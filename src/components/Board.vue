@@ -1,5 +1,4 @@
 <template>
-  <!-- test8 -->
   <div class="boardWrap">
     <svg class="board" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" viewBox="0 0 1422 1422">
       <defs>

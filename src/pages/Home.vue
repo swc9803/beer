@@ -1,7 +1,7 @@
 <template>
   <div class="container" ref="container">
     <section class="section1" ref="section1">
-      <h1>section1</h1>
+      <FallingToWater />
     </section>
     <section class="section2" ref="section2">
       <Board
@@ -16,13 +16,11 @@
     <section class="section4" ref="section4">
       <h1>section4</h1>
     </section>
-    <section class="section5" ref="section5">
-      <h1>section5</h1>
-    </section>
   </div>
 </template>
 
 <script>
+import FallingToWater from '@/components/FallingToWater'
 import Board from '@/components/Board'
 import { onMounted, ref } from 'vue'
 import gsap from 'gsap'
@@ -31,6 +29,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default {
   components: {
+    FallingToWater,
     Board
   },
   setup () {
@@ -39,7 +38,6 @@ export default {
     const section2 = ref()
     const section3 = ref()
     const section4 = ref()
-    const section5 = ref()
 
     const changeToYellow = () => {
       gsap.to(section2.value, {
@@ -63,15 +61,32 @@ export default {
       })
     }
     onMounted(() => {
+      scrollTo(0, 0)
       ScrollTrigger.matchMedia({
         '(min-width: 767px)': function () {
-          const SECTIONS = gsap.utils.toArray([section1.value, section2.value, section3.value, section4.value, section5.value])
+          const SECTIONS = gsap.utils.toArray([section1.value, section2.value, section3.value, section4.value])
           gsap.to(SECTIONS, {
             xPercent: -100 * (SECTIONS.length - 1),
             ease: 'none',
             scrollTrigger: {
               trigger: container.value,
               end: () => '+=' + container.value.offsetWidth,
+              pin: true,
+              scrub: 0.1,
+              snap: 1 / (SECTIONS.length - 1)
+            }
+          })
+        }
+      })
+      ScrollTrigger.matchMedia({
+        '(max-width: 766px)': function () {
+          const SECTIONS = gsap.utils.toArray([section1.value, section2.value, section3.value, section4.value])
+          gsap.to(SECTIONS, {
+            yPercent: -100 * (SECTIONS.length - 1),
+            ease: 'none',
+            scrollTrigger: {
+              trigger: container.value,
+              end: () => '+=' + container.value.offsetHeight,
               pin: true,
               scrub: 0.1,
               snap: 1 / (SECTIONS.length - 1)
@@ -86,7 +101,6 @@ export default {
       section2,
       section3,
       section4,
-      section5,
       changeToYellow,
       changeToGreen,
       changeToBrown
@@ -97,7 +111,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  width: 500%;
+  width: 400%;
   display: flex;
   overflow: hidden;
   section {
@@ -105,9 +119,6 @@ export default {
     width: 100%;
     height: 100vh;
     position: relative;
-  }
-  .section1 {
-    background: yellowgreen;
   }
   .section2 {
     background: #dab37980;
@@ -117,9 +128,6 @@ export default {
   }
   .section4 {
     background: cornflowerblue;
-  }
-  .section5 {
-    background: seagreen;
   }
 }
 @media screen and (max-width: 768px) {
