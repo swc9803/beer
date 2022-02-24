@@ -1,48 +1,46 @@
 <template>
-  <span>
-    <div class="waterWrap" @mousemove="cursorMove">
-      <p ref="fallingText" class="fallingText">Wanna Cool?</p>
-      <div ref="btn" class="btnWrap">
-        <div @click="fall" class="yes">네!</div>
-        <div @click="disappear" ref="reject">아니요...</div>
-      </div>
-      <span v-for="line in 40" :key="line" class="velocity" />
-      <div class="background" ref="background">
-        <div class="clip" />
-      </div>
-      <p ref="movingText" class="movingText">Enjoy Sung Beer</p>
-      <p ref="scroll" class="scroll">Please Keep Scrolling</p>
-      <svg v-for="bubble in 20" :key="bubble" class="bubbles" :ref="bubbleRef"
-        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 248 248">
-        <g filter="url(#bubble_f_11_2)">
-          <mask id="path-1-inside-1_11_2" fill="#fff">
-            <path d="M244 124a120 120 0 1 1-240 0 120 120 0 0 1 240 0Z"/>
-          </mask>
-          <path fill="url(#bubble_radial_11_2)" d="M244 124a120 120 0 1 1-240 0 120 120 0 0 1 240 0Z"/>
-          <path stroke="#fff" stroke-width="2" d="M244 124a120 120 0 1 1-240 0 120 120 0 0 1 240 0Z" mask="url(#path-1-inside-1_11_2)"/>
-        </g>
-        <defs>
-          <filter id="bubble_f_11_2" width="248" height="248" x="0" y="0" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-            <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-            <feGaussianBlur result="effect1_foregroundBlur_11_2" stdDeviation="2"/>
-          </filter>
-          <radialGradient id="bubble_radial_11_2" cx="0" cy="0" r="1" gradientTransform="rotate(55.7 -32.7 133) scale(62.9623)" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#fff" stop-opacity=".6"/>
-            <stop offset="1" stop-color="#fff" stop-opacity=".2"/>
-          </radialGradient>
-        </defs>
-      </svg>
-    </div><div />
-  </span>
+  <div class="waterWrap" @mousemove="cursorMove">
+    <p ref="fallingText" class="fallingText">Wanna Cool?</p>
+    <div ref="btn" class="btnWrap">
+      <div @click="fall" class="yes">네!</div>
+      <div @click="disappear" ref="reject">아니요...</div>
+    </div>
+    <span v-for="line in 40" :key="line" class="velocity" />
+    <div class="background" ref="background">
+      <div class="clip" />
+    </div>
+    <p ref="movingText" class="movingText">Enjoy Sung Beer</p>
+    <p ref="scroll" class="scroll">Please Keep Scrolling🔽</p>
+    <svg v-for="bubble in 25" :key="bubble" class="bubbles" :ref="bubbleRef"
+      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 248 248">
+      <g filter="url(#bubble_f_11_2)">
+        <mask id="path-1-inside-1_11_2" fill="#fff">
+          <path d="M244 124a120 120 0 1 1-240 0 120 120 0 0 1 240 0Z"/>
+        </mask>
+        <path fill="url(#bubble_radial_11_2)" d="M244 124a120 120 0 1 1-240 0 120 120 0 0 1 240 0Z"/>
+        <path stroke="#fff" stroke-width="2" d="M244 124a120 120 0 1 1-240 0 120 120 0 0 1 240 0Z" mask="url(#path-1-inside-1_11_2)"/>
+      </g>
+      <defs>
+        <filter id="bubble_f_11_2" width="248" height="248" x="0" y="0" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+          <feGaussianBlur result="effect1_foregroundBlur_11_2" stdDeviation="2"/>
+        </filter>
+        <radialGradient id="bubble_radial_11_2" cx="0" cy="0" r="1" gradientTransform="rotate(55.7 -32.7 133) scale(62.9623)" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#fff" stop-opacity=".6"/>
+          <stop offset="1" stop-color="#fff" stop-opacity=".2"/>
+        </radialGradient>
+      </defs>
+    </svg>
+  </div><div />
 </template>
 
 <script>
 import gsap from 'gsap'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 export default {
-  setup (props, { emit }) {
+  setup () {
     const fallingText = ref()
     const btn = ref()
     const reject = ref()
@@ -132,7 +130,7 @@ export default {
 
     const createBubble = () => {
       const setRandomPosition = () => {
-        for (var i = 0; i < 20; i++) {
+        for (var i = 0; i < 25; i++) {
           gsap.set(bubbleArray.value[i], {
             left: 'random(5, 95)%',
             scale: gsap.utils.random(0.6, 1.2)
@@ -140,7 +138,7 @@ export default {
         }
       }
       setTimeout(() => {
-        for (var i = 0; i < 20; i++) {
+        for (var i = 0; i < 25; i++) {
           setRandomPosition()
           gsap.to(bubbleArray.value[i], {
             top: '-50%',
@@ -159,6 +157,22 @@ export default {
         }
       }, 6000)
     }
+    onMounted(() => {
+      gsap.to(movingText.value, {
+        backgroundPosition: 0,
+        yoyo: true,
+        ease: 'none',
+        repeat: -1,
+        repeatDelay: 3
+      })
+      gsap.fromTo(scroll.value, { yPercent: -200 }, {
+        yPercent: 200,
+        yoyo: true,
+        duration: 3,
+        ease: 'none',
+        repeat: -1
+      })
+    })
     return {
       bubbleArray,
       bubbleRef,
@@ -178,6 +192,7 @@ export default {
 </script>
 
 <style lang="scss">
+$mainFont: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 #app {
   overflow: hidden;
 }
@@ -191,7 +206,7 @@ export default {
     position: relative;
     top: 30%;
     display: inline-block;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: $mainFont;
     font-size: 5rem;
     font-weight: 800;
     margin: 0 3% 0 3%;
@@ -244,7 +259,7 @@ export default {
   .movingText {
     position: relative;
     top: 20%;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: $mainFont;
     font-size: 5rem;
     font-weight: 800;
     margin: 0;
@@ -252,25 +267,32 @@ export default {
     opacity: 0;
     z-index: 4;
     letter-spacing: 3px;
-    text-shadow: 1px 1px 1px #bed2ff,
-    1px 2px 1px #78a3ff,
-    1px 3px 1px #719eff,
-    1px 4px 1px #7da6ff,
-    1px 5px 1px #4d85ff,
-    1px 6px 1px #4d85ff,
-    1px 7px 1px #4d85ff,
-    1px 8px 1px #4d85ff,
-    1px 9px 1px #4d85ff,
-    1px 18px 6px rgba(16,16,16,0.3),
-    1px 25px 35px rgba(16,16,16,0.1),
-    1px 30px 60px rgba(16,16,16,0.3);
+    background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(18deg, rgba(208,206,43,1) 46%, rgba(255,255,255,1) 63%);
+    background-size: 300%;
+    animation: fillText 3s linear infinite;
+  }
+  @keyframes fillText {
+    0% {
+      background-position: 0% 100%;
+    }
+    50% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: 0% 100%;
+    }
   }
   .scroll {
     position: absolute;
-    width: 100%;
+    transform: translate(-50%);
+    left: 50%;
     bottom: 20%;
     opacity: 0;
-    font-size: 3rem;
+    cursor: pointer;
+    font-style: oblique;
+    font-size: 1.5rem;
     transition: 2s;
     color: rgb(255, 255, 255);
   }

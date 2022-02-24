@@ -1,5 +1,10 @@
 <template>
-  <div ref="dd">hi</div>
+<div class="liquid">
+      <h2>Water</h2>
+      <h2>Water</h2>
+      <h2>Water</h2>
+      <h2>Water</h2>
+    </div>
 </template>
 
 <script>
@@ -18,5 +23,65 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.liquid {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #183954;
+}
+.liquid h2 {
+  position: absolute;
+  font-size: 26vw;
+}
+.liquid h2:nth-child(1) {
+  color: #fff;
+  text-shadow: -2px 2px 0px #183954, -4px 4px 0px #183954, -6px 6px 0px #183954,
+    -8px 8px 0px #183954, -18px 18px 20px rgba(0, 0, 0, 0.5),
+    -18px 18px 50px rgba(0, 0, 0, 0.5);
+}
+.liquid h2:nth-child(2) {
+  color: #2196f3;
+  animation: wave 3s ease-in-out infinite;
+}
+.liquid h2:nth-child(3) {
+  color: #2196f3;
+  opacity: 0.5;
+  animation: wave 6s ease-in-out infinite;
+}
+.liquid h2:nth-child(4) {
+  color: #2196f3;
+  animation: wave 4s ease-in-out infinite;
+}
+@keyframes wave {
+  0%,
+  100% {
+    clip-path: polygon(
+      0 44%,
+      21% 43%,
+      39% 49%,
+      53% 55%,
+      68% 61%,
+      85% 59%,
+      100% 49%,
+      100% 100%,
+      0% 100%
+    );
+  }
+  50% {
+    clip-path: polygon(
+      0 60%,
+      19% 68%,
+      36% 72%,
+      53% 66%,
+      68% 52%,
+      82% 39%,
+      100% 42%,
+      100% 100%,
+      0% 100%
+    );
+  }
+}
 </style>

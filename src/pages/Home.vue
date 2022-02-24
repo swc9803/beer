@@ -115,10 +115,10 @@ export default {
   display: flex;
   overflow: hidden;
   section {
+    position: relative;
     overflow: hidden;
     width: 100%;
     height: 100vh;
-    position: relative;
   }
   .section2 {
     background: #dab37980;
@@ -133,6 +133,7 @@ export default {
 @media screen and (max-width: 768px) {
   .container {
     width: 100%;
+    height: 100%;
     display: block;
   }
 }
