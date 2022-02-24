@@ -1,13 +1,23 @@
 <template>
+  <transition name="modalFade">
+    <div v-show="ageModal" class="ageModal">
+      <div class="modalWrap">
+        <p>만 19세 미만은 음주가 불가능합니다.</p>
+        <div @click="closeModal" class="modalBtn">
+          확인
+        </div>
+      </div>
+    </div>
+  </transition>
   <div class="waterWrap" @mousemove="cursorMove">
-    <p ref="fallingText" class="fallingText">Wanna Cool?</p>
+    <p ref="fallingText" class="fallingText">만 19세 이상입니까?</p>
     <div ref="btn" class="btnWrap">
-      <div @click="fall" class="yes">네!</div>
-      <div @click="disappear" ref="reject">아니요...</div>
+      <div @click="fall">네</div>
+      <div @click="showModal">아니요</div>
     </div>
     <span v-for="line in 40" :key="line" class="velocity" />
     <div class="background" ref="background">
-      <div class="clip" />
+      <div class="clip" ref="clip" />
     </div>
     <p ref="movingText" class="movingText">Enjoy Sung Beer</p>
     <p ref="scroll" class="scroll">Please Keep Scrolling🔽</p>
@@ -41,11 +51,12 @@ import { onMounted, ref } from 'vue'
 
 export default {
   setup () {
+    const ageModal = ref(false)
     const fallingText = ref()
     const btn = ref()
-    const reject = ref()
     const background = ref()
     const scroll = ref()
+    const clip = ref()
     const bubbleArray = ref([])
     const bubbleRef = (el) => bubbleArray.value.push(el)
     const movingText = ref()
@@ -61,14 +72,14 @@ export default {
     const fall = () => {
       gsap.to(fallingText.value, {
         top: '-100%',
-        scaleY: 5,
+        scaleY: 6,
         transformOrigin: 'bottom',
         duration: 3,
         ease: 'expo.in'
       })
       gsap.to(btn.value, {
         top: '-100%',
-        scaleY: 2,
+        scaleY: 3,
         transformOrigin: 'bottom',
         pointerEvents: 'none',
         duration: 3,
@@ -87,7 +98,7 @@ export default {
         delay: 'random(3, 5)',
         ease: 'expo'
       }, '<')
-      gsap.to('.clip', {
+      gsap.to(clip.value, {
         top: '-100%',
         duration: 0.4,
         ease: 'none',
@@ -118,14 +129,11 @@ export default {
         }
       })
     }
-    const disappear = () => {
-      gsap.to(reject.value, {
-        opacity: 0,
-        yPercent: -20,
-        duration: 0.5,
-        ease: 'none',
-        cursor: 'auto'
-      })
+    const showModal = () => {
+      ageModal.value = true
+    }
+    const closeModal = () => {
+      ageModal.value = false
     }
 
     const createBubble = () => {
@@ -174,17 +182,19 @@ export default {
       })
     })
     return {
+      ageModal,
+      closeModal,
       bubbleArray,
       bubbleRef,
       fallingText,
       btn,
-      reject,
       scroll,
+      clip,
       background,
       movingText,
       cursorMove,
       fall,
-      disappear,
+      showModal,
       createBubble
     }
   }
@@ -207,18 +217,19 @@ $mainFont: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu
     top: 30%;
     display: inline-block;
     font-family: $mainFont;
-    font-size: 5rem;
+    font-size: 4rem;
     font-weight: 800;
     margin: 0 3% 0 3%;
     color: #2d70ff;
     letter-spacing: 3px;
+    word-break: keep-all;
   }
   .btnWrap {
     position: relative;
     display: flex;
     justify-content: center;
     top: 50%;
-    z-index: 7;
+    z-index: 3;
     div {
       cursor: pointer;
       border-radius: 0.5em;
@@ -265,7 +276,7 @@ $mainFont: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu
     margin: 0;
     color: rgb(190, 220, 255);
     opacity: 0;
-    z-index: 4;
+    z-index: 1;
     letter-spacing: 3px;
     background-clip: text;
     color: transparent;
@@ -300,18 +311,67 @@ $mainFont: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu
     position: absolute;
     width: 7%;
     top: 110%;
-    z-index: 5;
+    z-index: 2;
     transition: scale 2s ease-out;
     &:hover {
       scale: 1.2;
     }
   }
 }
+.ageModal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  background: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  .modalWrap {
+    margin: 0;
+    position: relative;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 350px;
+    background: white;
+    border-radius: 1rem;
+    p {
+      position: relative;
+      transform: translate(0, 400%);
+      font-weight: 600;
+      color: rgb(160, 0, 0);
+      font-size: 1.5rem;
+      margin: 0;
+    }
+    .modalBtn {
+      position: relative;
+      transform: translate(0, 500%);
+      display: inline-block;
+      padding: 10px;
+      border: 1px solid black;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+  }
+}
+.modalFade-enter-from,
+.modalFade-leave-to {
+  opacity: 0;
+}
+.modalFade-enter-active,
+.modalFade-leave-active {
+  transition: .3s ease
+}
 @media screen and (max-width: 1500px) {
   .waterWrap {
     .movingText {
       top: 10%;
       font-size: 4rem;
+    }
+    .btnWrap {
+      div {
+        padding: 10px;
+      }
     }
   }
 }
@@ -322,10 +382,26 @@ $mainFont: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu
     }
     .btnWrap {
       top: 35%;
+      div {
+        padding: 15px 5px 15px 5px;
+      }
     }
     .movingText {
       top: 0;
       font-size: 2rem;
+    }
+  }
+  .ageModal {
+    .modalWrap {
+      width: 90%;
+      height: 200px;
+      p {
+        transform: translate(0, 200%);
+        font-size: 1rem;
+      }
+      .modalBtn {
+        transform: translate(0, 250%);
+      }
     }
   }
 }
