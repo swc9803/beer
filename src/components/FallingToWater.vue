@@ -1,6 +1,6 @@
 <template>
   <span>
-    <div class="container" @mousemove="cursorMove">
+    <div class="waterWrap" @mousemove="cursorMove">
       <p ref="fallingText" class="fallingText">Wanna Cool?</p>
       <div ref="btn" class="btnWrap">
         <div @click="fall" class="yes">네!</div>
@@ -11,6 +11,7 @@
         <div class="clip" />
       </div>
       <p ref="movingText" class="movingText">Enjoy Sung Beer</p>
+      <p ref="scroll" class="scroll">Please Keep Scrolling</p>
       <svg v-for="bubble in 20" :key="bubble" class="bubbles" :ref="bubbleRef"
         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 248 248">
         <g filter="url(#bubble_f_11_2)">
@@ -46,6 +47,7 @@ export default {
     const btn = ref()
     const reject = ref()
     const background = ref()
+    const scroll = ref()
     const bubbleArray = ref([])
     const bubbleRef = (el) => bubbleArray.value.push(el)
     const movingText = ref()
@@ -110,6 +112,8 @@ export default {
         duration: 2,
         delay: 7,
         onStart () {
+          document.querySelector('#app').style.overflow = 'visible'
+          scroll.value.style.opacity = '1'
           gsap.to('.velocity', {
             display: 'none'
           })
@@ -161,6 +165,7 @@ export default {
       fallingText,
       btn,
       reject,
+      scroll,
       background,
       movingText,
       cursorMove,
@@ -172,8 +177,11 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.container {
+<style lang="scss">
+#app {
+  overflow: hidden;
+}
+.waterWrap {
   position: relative;
   width: 100%;
   height: 100%;
@@ -221,7 +229,7 @@ export default {
     width: 100%;
     height: 100%;
     top: 110%;
-    background: #0300c0;
+    background: #2926db;
     .clip {
       position: absolute;
       transform: translate(-50%);
@@ -232,12 +240,6 @@ export default {
       clip-path: ellipse(50% 70% at 50% 30%);
       background: white;
     }
-  }
-  .bigBubbles {
-    position: absolute;
-    width: 7%;
-    top: 110%;
-    z-index: 5;
   }
   .movingText {
     position: relative;
@@ -263,6 +265,15 @@ export default {
     1px 25px 35px rgba(16,16,16,0.1),
     1px 30px 60px rgba(16,16,16,0.3);
   }
+  .scroll {
+    position: absolute;
+    width: 100%;
+    bottom: 20%;
+    opacity: 0;
+    font-size: 3rem;
+    transition: 2s;
+    color: rgb(255, 255, 255);
+  }
   .bubbles {
     position: absolute;
     width: 7%;
@@ -273,15 +284,9 @@ export default {
       scale: 1.2;
     }
   }
-  .bigBubbles {
-    position: absolute;
-    width: 7%;
-    top: 110%;
-    z-index: 5;
-  }
 }
 @media screen and (max-width: 1500px) {
-  .container {
+  .waterWrap {
     .movingText {
       top: 10%;
       font-size: 4rem;
@@ -289,7 +294,7 @@ export default {
   }
 }
 @media screen and (max-width: 574px) {
-  .container {
+  .waterWrap {
     .fallingText {
       top: 20%;
     }
