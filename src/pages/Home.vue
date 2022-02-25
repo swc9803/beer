@@ -12,9 +12,11 @@
     </section>
     <section class="section3" ref="section3">
       <h1>section3</h1>
+      <!-- 브랜드 이야기 -->
     </section>
     <section class="section4" ref="section4">
       <h1>section4</h1>
+      <!-- 상품 판매 -->
     </section>
   </div>
 </template>
@@ -63,7 +65,7 @@ export default {
     onMounted(() => {
       scrollTo(0, 0)
       ScrollTrigger.matchMedia({
-        '(min-width: 767px)': function () {
+        '(min-width: 768px)': function () {
           const SECTIONS = gsap.utils.toArray([section1.value, section2.value, section3.value, section4.value])
           gsap.to(SECTIONS, {
             xPercent: -100 * (SECTIONS.length - 1),
@@ -79,7 +81,7 @@ export default {
         }
       })
       ScrollTrigger.matchMedia({
-        '(max-width: 766px)': function () {
+        '(max-width: 767px)': function () {
           const SECTIONS = gsap.utils.toArray([section1.value, section2.value, section3.value, section4.value])
           gsap.to(SECTIONS, {
             yPercent: -100 * (SECTIONS.length - 1),
