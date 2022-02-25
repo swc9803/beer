@@ -1,48 +1,50 @@
 <template>
-  <transition name="modalFade">
-    <div v-show="ageModal" class="ageModal">
-      <div class="modalWrap">
-        <p>만 19세 미만은 음주가 불가능합니다.</p>
-        <div @click="closeModal" class="modalBtn">
-          확인
+  <span>
+    <transition name="modalFade">
+      <div v-show="ageModal" class="ageModal">
+        <div class="modalWrap">
+          <p>만 19세 미만은 음주가 불가능합니다.</p>
+          <div @click="closeModal" class="modalBtn">
+            확인
+          </div>
         </div>
       </div>
-    </div>
-  </transition>
-  <div class="waterWrap" @mousemove="cursorMove">
-    <p ref="fallingText" class="fallingText">만 19세 이상입니까?</p>
-    <div ref="btn" class="btnWrap">
-      <div @click="fall">네</div>
-      <div @click="showModal">아니요</div>
-    </div>
-    <span v-for="line in 40" :key="line" class="velocity" />
-    <div class="background" ref="background">
-      <div class="clip" ref="clip" />
-    </div>
-    <p ref="movingText" class="movingText">Enjoy Sung Beer</p>
-    <p ref="scroll" class="scroll">Please Keep Scrolling🔽</p>
-    <svg v-for="bubble in 25" :key="bubble" class="bubbles" :ref="bubbleRef"
-      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 248 248">
-      <g filter="url(#bubble_f_11_2)">
-        <mask id="path-1-inside-1_11_2" fill="#fff">
-          <path d="M244 124a120 120 0 1 1-240 0 120 120 0 0 1 240 0Z"/>
-        </mask>
-        <path fill="url(#bubble_radial_11_2)" d="M244 124a120 120 0 1 1-240 0 120 120 0 0 1 240 0Z"/>
-        <path stroke="#fff" stroke-width="2" d="M244 124a120 120 0 1 1-240 0 120 120 0 0 1 240 0Z" mask="url(#path-1-inside-1_11_2)"/>
-      </g>
-      <defs>
-        <filter id="bubble_f_11_2" width="248" height="248" x="0" y="0" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-          <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-          <feGaussianBlur result="effect1_foregroundBlur_11_2" stdDeviation="2"/>
-        </filter>
-        <radialGradient id="bubble_radial_11_2" cx="0" cy="0" r="1" gradientTransform="rotate(55.7 -32.7 133) scale(62.9623)" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#fff" stop-opacity=".6"/>
-          <stop offset="1" stop-color="#fff" stop-opacity=".2"/>
-        </radialGradient>
-      </defs>
-    </svg>
-  </div><div />
+    </transition>
+    <div class="waterWrap" @mousemove="cursorMove">
+      <p ref="fallingText" class="fallingText">만 19세 이상입니까?</p>
+      <div ref="btn" class="btnWrap">
+        <div @click="fall">네</div>
+        <div @click="showModal">아니요</div>
+      </div>
+      <span v-for="line in 40" :key="line" class="velocity" />
+      <div class="background" ref="background">
+        <div class="clip" ref="clip" />
+      </div>
+      <p ref="movingText" class="movingText">Enjoy Sung Beer</p>
+      <p ref="scroll" class="scroll">Please Keep Scrolling🔽</p>
+      <svg v-for="bubble in 30" :key="bubble" class="bubbles" :ref="bubbleRef"
+        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 248 248">
+        <g filter="url(#bubble_f_11_2)">
+          <mask id="path-1-inside-1_11_2" fill="#fff">
+            <path d="M244 124a120 120 0 1 1-240 0 120 120 0 0 1 240 0Z"/>
+          </mask>
+          <path fill="url(#bubble_radial_11_2)" d="M244 124a120 120 0 1 1-240 0 120 120 0 0 1 240 0Z"/>
+          <path stroke="#fff" stroke-width="2" d="M244 124a120 120 0 1 1-240 0 120 120 0 0 1 240 0Z" mask="url(#path-1-inside-1_11_2)"/>
+        </g>
+        <defs>
+          <filter id="bubble_f_11_2" width="248" height="248" x="0" y="0" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+            <feGaussianBlur result="effect1_foregroundBlur_11_2" stdDeviation="2"/>
+          </filter>
+          <radialGradient id="bubble_radial_11_2" cx="0" cy="0" r="1" gradientTransform="rotate(55.7 -32.7 133) scale(62.9623)" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#fff" stop-opacity=".6"/>
+            <stop offset="1" stop-color="#fff" stop-opacity=".2"/>
+          </radialGradient>
+        </defs>
+      </svg>
+    </div><div />
+  </span>
 </template>
 
 <script>
@@ -50,7 +52,7 @@ import gsap from 'gsap'
 import { onMounted, ref } from 'vue'
 
 export default {
-  setup () {
+  setup (props, { emit }) {
     const ageModal = ref(false)
     const fallingText = ref()
     const btn = ref()
@@ -121,6 +123,7 @@ export default {
         duration: 2,
         delay: 7,
         onStart () {
+          emit('side')
           document.querySelector('#app').style.overflow = 'visible'
           scroll.value.style.opacity = '1'
           gsap.to('.velocity', {
@@ -138,7 +141,7 @@ export default {
 
     const createBubble = () => {
       const setRandomPosition = () => {
-        for (var i = 0; i < 25; i++) {
+        for (var i = 0; i < 30; i++) {
           gsap.set(bubbleArray.value[i], {
             left: 'random(5, 95)%',
             scale: gsap.utils.random(0.6, 1.2)
@@ -146,7 +149,7 @@ export default {
         }
       }
       setTimeout(() => {
-        for (var i = 0; i < 25; i++) {
+        for (var i = 0; i < 30; i++) {
           setRandomPosition()
           gsap.to(bubbleArray.value[i], {
             top: '-50%',

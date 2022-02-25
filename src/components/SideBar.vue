@@ -160,9 +160,6 @@ export default {
 
 <style lang="scss" scoped>
 .sideBarWrap {
-  // position: absolute;
-  // top: 0;
-  // left: 0;
   .arrow {
     position: fixed;
     transform: translate(-40%, -50%);
@@ -207,10 +204,7 @@ export default {
     }
   }
 }
-.sideBarFade-enter-from {
-  transform: translate(-100%);
-  opacity: 0;
-}
+.sideBarFade-enter-from,
 .sideBarFade-leave-to {
   transform: translate(-100%);
   opacity: 0;

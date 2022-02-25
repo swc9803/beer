@@ -1,7 +1,10 @@
 <template>
+  <SideBar v-show="sideBarData" />
   <div class="container" ref="container">
     <section class="section1" ref="section1">
-      <FallingToWater />
+      <FallingToWater
+        @side="showSideBar"
+      />
     </section>
     <section class="section2" ref="section2">
       <Board
@@ -22,6 +25,7 @@
 </template>
 
 <script>
+import SideBar from '@/components/SideBar'
 import FallingToWater from '@/components/FallingToWater'
 import Board from '@/components/Board'
 import { onMounted, ref } from 'vue'
@@ -31,6 +35,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default {
   components: {
+    SideBar,
     FallingToWater,
     Board
   },
@@ -40,6 +45,7 @@ export default {
     const section2 = ref()
     const section3 = ref()
     const section4 = ref()
+    const sideBarData = ref(false)
 
     const changeToYellow = () => {
       gsap.to(section2.value, {
@@ -61,6 +67,9 @@ export default {
         duration: 1,
         ease: 'none'
       })
+    }
+    const showSideBar = () => {
+      sideBarData.value = true
     }
     onMounted(() => {
       scrollTo(0, 0)
@@ -103,9 +112,11 @@ export default {
       section2,
       section3,
       section4,
+      sideBarData,
       changeToYellow,
       changeToGreen,
-      changeToBrown
+      changeToBrown,
+      showSideBar
     }
   }
 }
