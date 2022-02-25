@@ -70,9 +70,9 @@ export default {
     const arrowScaleAni = gsap.timeline({ paused: true })
 
     const openSidaBar = () => {
+      // const windowOutW = outerWidth
       if (sidebarData.value === false) {
-        const windowOutW = outerWidth
-        if (windowOutW <= 1280) {
+        if (matchMedia('(max-width: 768px)').matches) {
           gsap.to(arrow.value, {
             rotate: 540,
             transformOrigin: 'center',
@@ -81,7 +81,7 @@ export default {
           gsap.to(arrowWrap.value, {
             left: '40%'
           }, '<')
-        } else if (windowOutW > 1280) {
+        } else if (matchMedia('(min-width: 767px)').matches) {
           gsap.to(arrow.value, {
             rotate: 540,
             transformOrigin: 'center',

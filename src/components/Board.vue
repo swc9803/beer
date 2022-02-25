@@ -679,7 +679,7 @@ export default {
 .boardWrap {
   position: relative;
   transform: translate(-50%, -48%);
-  width: 90%;
+  width: 73%;
   left: 50%;
   .textWrap {
     position: absolute;
