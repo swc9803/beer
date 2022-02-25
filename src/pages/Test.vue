@@ -68,10 +68,10 @@ export default {
     const arrowWrap = ref()
     const arrow = ref()
     const arrowScaleAni = gsap.timeline({ paused: true })
-    const windowOutW = outerWidth
 
     const openSidaBar = () => {
       if (sidebarData.value === false) {
+        const windowOutW = outerWidth
         if (windowOutW <= 1280) {
           gsap.to(arrow.value, {
             rotate: 540,
