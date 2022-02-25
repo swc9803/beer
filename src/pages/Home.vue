@@ -1,5 +1,10 @@
 <template>
-  <SideBar v-show="sideBarData" />
+  <SideBar v-show="sideBarData"
+    @section1="moveToSection1"
+    @section2="moveToSection2"
+    @section3="moveToSection3"
+    @section4="moveToSection4"
+  />
   <div class="container" ref="container">
     <section class="section1" ref="section1">
       <FallingToWater
@@ -31,7 +36,8 @@ import Board from '@/components/Board'
 import { onMounted, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-gsap.registerPlugin(ScrollTrigger)
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
 export default {
   components: {
@@ -47,6 +53,20 @@ export default {
     const section4 = ref()
     const sideBarData = ref(false)
 
+    const moveToSection1 = () => {
+      scrollTo(0, 0)
+    }
+    const moveToSection2 = () => {
+      const outer = outerHeight
+      gsap.to(window, { duration: 1, scrollTo: { y: outer * 1.17 / 4, autoKill: true } })
+    }
+    const moveToSection3 = () => {
+      const outer = outerHeight
+      gsap.to(window, { duration: 1, scrollTo: { y: outer * 2.318 / 4, autoKill: true } })
+    }
+    const moveToSection4 = () => {
+      gsap.to(window, { duration: 1, scrollTo: 'max' })
+    }
     const changeToYellow = () => {
       gsap.to(section2.value, {
         background: '#f4ffb480',
@@ -74,7 +94,7 @@ export default {
     onMounted(() => {
       scrollTo(0, 0)
       ScrollTrigger.matchMedia({
-        '(min-width: 768px)': function () {
+        '(min-width: 799px)': function () {
           const SECTIONS = gsap.utils.toArray([section1.value, section2.value, section3.value, section4.value])
           gsap.to(SECTIONS, {
             xPercent: -100 * (SECTIONS.length - 1),
@@ -90,7 +110,7 @@ export default {
         }
       })
       ScrollTrigger.matchMedia({
-        '(max-width: 767px)': function () {
+        '(max-width: 800px)': function () {
           const SECTIONS = gsap.utils.toArray([section1.value, section2.value, section3.value, section4.value])
           gsap.to(SECTIONS, {
             yPercent: -100 * (SECTIONS.length - 1),
@@ -113,6 +133,10 @@ export default {
       section3,
       section4,
       sideBarData,
+      moveToSection1,
+      moveToSection2,
+      moveToSection3,
+      moveToSection4,
       changeToYellow,
       changeToGreen,
       changeToBrown,
@@ -143,7 +167,7 @@ export default {
     background: cornflowerblue;
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
   .container {
     width: 100%;
     height: 100%;

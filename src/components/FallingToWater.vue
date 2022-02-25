@@ -304,7 +304,6 @@ $mainFont: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu
     left: 50%;
     bottom: 20%;
     opacity: 0;
-    cursor: pointer;
     font-style: oblique;
     font-size: 1.5rem;
     transition: 2s;

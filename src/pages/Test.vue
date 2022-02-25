@@ -59,101 +59,53 @@
 </template>
 
 <script>
-import gsap from 'gsap'
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+// import gsap from 'gsap'
 
 export default {
   setup () {
-    const sidebarData = ref(false)
-    const arrowWrap = ref()
-    const arrow = ref()
-    const arrowScaleAni = gsap.timeline({ paused: true })
+    // gsap.registerPlugin(ScrollToPlugin, ScrollTrigger)
 
-    const openSidaBar = () => {
-      if (sidebarData.value === false) {
-        if (matchMedia('(max-width: 800px)').matches) {
-          gsap.to(arrow.value, {
-            rotate: 540,
-            transformOrigin: 'center',
-            duration: 0.5
-          })
-          gsap.to(arrowWrap.value, {
-            left: '40%'
-          }, '<')
-        } else if (matchMedia('(min-width: 799px)').matches) {
-          gsap.to(arrow.value, {
-            rotate: 540,
-            transformOrigin: 'center',
-            duration: 0.5
-          })
-          gsap.to(arrowWrap.value, {
-            left: '20%'
-          }, '<')
-        }
-      } else if (sidebarData.value === true) {
-        gsap.to(arrow.value, {
-          rotate: 0,
-          transformOrigin: 'center',
-          duration: 0.5
-        })
-        gsap.to(arrowWrap.value, {
-          left: 0
-        }, '<')
-      }
-    }
-    const arrowBigger = () => {
-      arrowScaleAni.play()
-    }
-    const arrowSmaller = () => {
-      arrowScaleAni.reverse()
-    }
-    onMounted(() => {
-      addEventListener('resize', function () {
-        if (matchMedia('(max-width: 800px)').matches) {
-          if (sidebarData.value === true) {
-            gsap.set(arrowWrap.value, {
-              left: '40%'
-            })
-          }
-        } else if (matchMedia('(min-width: 799px)').matches) {
-          if (sidebarData.value === true) {
-            gsap.set(arrowWrap.value, {
-              left: '20%'
-            })
-          }
-        }
-      })
-      arrowScaleAni.to(arrowWrap.value, {
-        scale: 1.3,
-        ease: 'none',
-        duration: 0.2
-      })
-    })
-    onBeforeUnmount(() => {
-      addEventListener('resize', function () {
-        if (matchMedia('(max-width: 800px)').matches) {
-          if (sidebarData.value === true) {
-            gsap.set(arrowWrap.value, {
-              left: '40%'
-            })
-          }
-        } else if (matchMedia('(min-width: 799px)').matches) {
-          if (sidebarData.value === true) {
-            gsap.set(arrowWrap.value, {
-              left: '20%'
-            })
-          }
-        }
-      })
-    })
-    return {
-      sidebarData,
-      arrowWrap,
-      arrow,
-      openSidaBar,
-      arrowBigger,
-      arrowSmaller
-    }
+    // const panelsSection = document.querySelector('#panels')
+    // const panelsContainer = document.querySelector('#panels-container')
+    // let tween
+    // document.querySelectorAll('.anchor').forEach(anchor => {
+    //   anchor.addEventListener('click', function (e) {
+    //     e.preventDefault()
+    //     const targetElem = document.querySelector(e.target.getAttribute('href'))
+    //     let y = targetElem
+    //     if (targetElem && panelsContainer.isSameNode(targetElem.parentElement)) {
+    //       const totalScroll = tween.scrollTrigger.end - tween.scrollTrigger.start
+    //       const totalMovement = (panels.length - 1) * targetElem.offsetWidth
+    //       y = Math.round(tween.scrollTrigger.start + (targetElem.offsetLeft / totalMovement) * totalScroll)
+    //     }
+    //     gsap.to(window, {
+    //       scrollTo: {
+    //         y: y,
+    //         autoKill: false
+    //       },
+    //       duration: 1
+    //     })
+    //   })
+    // })
+
+    // /* Panels */
+    // const panels = gsap.utils.toArray('#panels-container .panel')
+    // tween = gsap.to(panels, {
+    //   xPercent: -100 * (panels.length - 1),
+    //   ease: 'none',
+    //   scrollTrigger: {
+    //     trigger: '#panels-container',
+    //     pin: true,
+    //     start: 'top top',
+    //     scrub: 1,
+    //     snap: {
+    //       snapTo: 1 / (panels.length - 1),
+    //       inertia: false,
+    //       duration: { min: 0.1, max: 0.1 }
+    //     },
+    //     end: () => '+=' + (panelsContainer.offsetWidth - innerWidth)
+    //   }
+    // })
   }
 }
 </script>

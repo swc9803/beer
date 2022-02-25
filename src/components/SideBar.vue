@@ -9,7 +9,7 @@
     <transition name="sideBarFade">
       <div v-show="sidebarData" class="sideBar">
         <ul>
-          <svg class="sideSymbol" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 66 80">
+          <svg @click="moveToSection1" class="sideSymbol" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 66 80">
             <g filter="url(#sideSymbol0_f_46_2)">
               <ellipse cx="33" cy="58.1" fill="#000" fill-opacity=".4" rx="21" ry="9.5"/>
             </g>
@@ -48,10 +48,10 @@
               </filter>
             </defs>
           </svg>
-          <li>home</li>
-          <li>sung beer 즐기기</li>
-          <li>브랜드 스토리</li>
-          <li>영양 정보</li>
+          <li @click="moveToSection1">home</li>
+          <li @click="moveToSection2">sung beer 즐기기</li>
+          <li @click="moveToSection3">브랜드 스토리</li>
+          <li @click="moveToSection4">영양 정보</li>
         </ul>
       </div>
     </transition>
@@ -63,7 +63,7 @@ import gsap from 'gsap'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 export default {
-  setup () {
+  setup (props, { emit }) {
     const sidebarData = ref(false)
     const arrowWrap = ref()
     const arrow = ref()
@@ -107,6 +107,19 @@ export default {
     const arrowSmaller = () => {
       arrowScaleAni.reverse()
     }
+    const moveToSection1 = () => {
+      emit('section1')
+    }
+    const moveToSection2 = () => {
+      emit('section2')
+    }
+    const moveToSection3 = () => {
+      emit('section3')
+    }
+    const moveToSection4 = () => {
+      emit('section4')
+    }
+
     onMounted(() => {
       addEventListener('resize', function () {
         if (matchMedia('(max-width: 800px)').matches) {
@@ -152,7 +165,11 @@ export default {
       arrow,
       openSidaBar,
       arrowBigger,
-      arrowSmaller
+      arrowSmaller,
+      moveToSection1,
+      moveToSection2,
+      moveToSection3,
+      moveToSection4
     }
   }
 }
