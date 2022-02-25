@@ -60,7 +60,7 @@
 
 <script>
 import gsap from 'gsap'
-import { onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 export default {
   setup () {
@@ -109,10 +109,42 @@ export default {
       arrowScaleAni.reverse()
     }
     onMounted(() => {
+      addEventListener('resize', function () {
+        if (matchMedia('(max-width: 768px)').matches) {
+          if (sidebarData.value === true) {
+            gsap.set(arrowWrap.value, {
+              left: '40%'
+            })
+          }
+        } else if (matchMedia('(min-width: 767px)').matches) {
+          if (sidebarData.value === true) {
+            gsap.set(arrowWrap.value, {
+              left: '20%'
+            })
+          }
+        }
+      })
       arrowScaleAni.to(arrowWrap.value, {
         scale: 1.3,
         ease: 'none',
         duration: 0.2
+      })
+    })
+    onBeforeUnmount(() => {
+      addEventListener('resize', function () {
+        if (matchMedia('(max-width: 768px)').matches) {
+          if (sidebarData.value === true) {
+            gsap.set(arrowWrap.value, {
+              left: '40%'
+            })
+          }
+        } else if (matchMedia('(min-width: 767px)').matches) {
+          if (sidebarData.value === true) {
+            gsap.set(arrowWrap.value, {
+              left: '20%'
+            })
+          }
+        }
       })
     })
     return {
