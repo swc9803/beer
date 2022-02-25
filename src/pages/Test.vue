@@ -67,13 +67,39 @@ export default {
     const sidebarData = ref(false)
     const arrowWrap = ref()
     const arrow = ref()
-    const arrowAni = gsap.timeline({ paused: true })
     const arrowScaleAni = gsap.timeline({ paused: true })
+    const windowOutW = outerWidth
+
     const openSidaBar = () => {
       if (sidebarData.value === false) {
-        arrowAni.play()
+        if (windowOutW <= 1280) {
+          gsap.to(arrow.value, {
+            rotate: 540,
+            transformOrigin: 'center',
+            duration: 0.5
+          })
+          gsap.to(arrowWrap.value, {
+            left: '40%'
+          }, '<')
+        } else if (windowOutW > 1280) {
+          gsap.to(arrow.value, {
+            rotate: 540,
+            transformOrigin: 'center',
+            duration: 0.5
+          })
+          gsap.to(arrowWrap.value, {
+            left: '20%'
+          }, '<')
+        }
       } else if (sidebarData.value === true) {
-        arrowAni.reverse()
+        gsap.to(arrow.value, {
+          rotate: 0,
+          transformOrigin: 'center',
+          duration: 0.5
+        })
+        gsap.to(arrowWrap.value, {
+          left: 0
+        }, '<')
       }
     }
     const arrowBigger = () => {
@@ -83,13 +109,6 @@ export default {
       arrowScaleAni.reverse()
     }
     onMounted(() => {
-      arrowAni.to(arrow.value, {
-        rotate: 540,
-        transformOrigin: 'center',
-        duration: 0.5
-      }).to(arrowWrap.value, {
-        left: '20%'
-      }, '<')
       arrowScaleAni.to(arrowWrap.value, {
         scale: 1.3,
         ease: 'none',
