@@ -57,12 +57,22 @@ export default {
       scrollTo(0, 0)
     }
     const moveToSection2 = () => {
-      const outer = outerHeight
-      gsap.to(window, { duration: 1, scrollTo: { y: outer * 1.17 / 4, autoKill: true } })
+      const outerW = outerWidth
+      const outerH = outerHeight
+      if (matchMedia('(max-width: 800px)').matches) {
+        gsap.to(window, { duration: 2, scrollTo: { y: outerW / 3.3 } })
+      } else {
+        gsap.to(window, { duration: 2, scrollTo: { y: outerH * 1.82 } })
+      }
     }
     const moveToSection3 = () => {
-      const outer = outerHeight
-      gsap.to(window, { duration: 1, scrollTo: { y: outer * 2.318 / 4, autoKill: true } })
+      const outerW = outerWidth
+      const outerH = outerHeight
+      if (matchMedia('(max-width: 800px)').matches) {
+        gsap.to(window, { duration: 2, scrollTo: { y: outerW / 1.66 } })
+      } else {
+        gsap.to(window, { duration: 2, scrollTo: { y: outerH * 4.7 } })
+      }
     }
     const moveToSection4 = () => {
       gsap.to(window, { duration: 1, scrollTo: 'max' })

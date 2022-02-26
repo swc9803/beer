@@ -1,204 +1,287 @@
 <template>
-  <div class="sideBarWrap">
-    <svg @click="openSidaBar(), sidebarData = !sidebarData"
-      ref="arrowWrap" class="arrow" @mouseover="arrowBigger" @mouseout="arrowSmaller"
-      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 45 45">
-      <path fill="#F2B102" d="M45 22.5a22.5 22.5 0 1 1-45 0 22.5 22.5 0 0 1 45 0Z"/>
-      <path ref="arrow" fill="#2525FF" d="M34.6 24c.5-.5.5-1.5 0-2L25 12.3a1.5 1.5 0 1 0-2.1 2.1l8.5 8.5-8.5 8.5a1.5 1.5 0 1 0 2.1 2.1l9.6-9.5Zm-1.6.5h.5v-3H33v3Z"/>
-    </svg>
-    <transition name="sideBarFade">
-      <div v-show="sidebarData" class="sideBar">
-        <ul>
-          <svg class="sideSymbol" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 66 80">
-            <g filter="url(#sideSymbol0_f_46_2)">
-              <ellipse cx="33" cy="58.1" fill="#000" fill-opacity=".4" rx="21" ry="9.5"/>
-            </g>
-            <path style="cursor: pointer" fill="#489CFF" d="m17 6.7 2-2.8-.4-1.3c0-.3.1-.6.4-.6C30 .7 36.5.6 47.4 2c.3 0 .5.3.4.6L47.5 4l1.8 3.7v51.2c0 .8-.4 1.5-1.2 1.9-.4.2-.7.5-1 1-.3.7-1 1.2-1.8 1.3-9.1 1-14.8 1-24.2 0-.8 0-1.5-.6-1.8-1.3-.3-.5-.6-.8-1-1a2.2 2.2 0 0 1-1.2-2v-52Z"/>
-            <path fill="#FDFF86" d="m24.4 25.4.1.5c0 .2.2.3.3.4l.5.3a25.7 25.7 0 0 0 1.4.8l.7.4.4.6c.2.3.2.5.2.8 0 .3 0 .6-.2.8 0 .3-.3.5-.5.7l-.8.4-1 .1c-.8 0-1.5-.1-2-.4-.4-.3-.7-.8-1-1.4L24 29l.2.5c0 .2.2.3.3.5l.4.3h.5c.4 0 .6 0 .9-.2.2-.1.3-.4.3-.7l-.1-.4-.4-.4-.4-.3a12.8 12.8 0 0 1-1.4-.7l-.7-.5-.5-.7a2 2 0 0 1 0-1.6l.5-.6.8-.4a3.6 3.6 0 0 1 1.9 0c.3 0 .5.2.7.3l.5.5.2.7c0 .3 0 .5-.2.6l-.6.2c-.4 0-.6-.2-.8-.5l.1-.3v-.3l-.3-.3a.9.9 0 0 0-.5 0 1 1 0 0 0-.4 0 .8.8 0 0 0-.5.5v.3Zm9 .1V31h-1.6v-.4a2 2 0 0 1-.6.4 2 2 0 0 1-.6 0 2 2 0 0 1-1 0 1.7 1.7 0 0 1-.8-1.2l-.1-.6V26.4l-.2-.2 1.7-.6V29c0 .3 0 .6.2.8.1.2.3.2.6.2h.4l.4-.3v-3.5l-.2-.2 1.7-.6Zm2.3 0v.5l.6-.2.6-.1c.4 0 .7 0 1 .2.2 0 .4.2.6.4l.3.6V31h-1.4v-3.3l-.2-.8c-.2-.2-.4-.3-.7-.3H36a2 2 0 0 0-.4.2V31h-1.5v-4.7L34 26l1.7-.6Zm8.3.5-.3.1.5.6.2.8c0 .2 0 .5-.2.7l-.5.6-.8.3-.9.1a5 5 0 0 0-.6 0l-.2.1v.1c0 .2 0 .2.2.3l.7.1a98 98 0 0 1 1.8.2l.7.4.2.5c0 .3 0 .5-.2.7l-.6.5-.9.2a5 5 0 0 1-2.7-.2 2 2 0 0 1-.6-.4.7.7 0 0 1-.1-.9 1.5 1.5 0 0 1 .4-.4l.3-.2-.5-.3-.1-.3c0-.2 0-.4.2-.5l.6-.3-.7-.5-.2-.8a1.6 1.6 0 0 1 .8-1.4c.2-.2.4-.3.7-.3a4 4 0 0 1 1.5 0l.6.1c.1-.2.3-.4.6-.5l.6-.2c.2 0 .4 0 .5.2l.2.5c0 .2 0 .3-.2.4l-.4.2c-.2 0-.3 0-.4-.2V26L44 26Zm-2.5 4.4-.3.3v.5l.3.2H43c.2-.1.3-.2.3-.4 0-.1 0-.2-.2-.2l-.5-.2a6.4 6.4 0 0 0-1.1-.2Zm.6-2.1c.2 0 .4 0 .5-.2.2-.1.3-.4.3-.6 0-.3 0-.6-.3-.7a1 1 0 0 0-.5-.2 1 1 0 0 0-.7.2l-.2.7c0 .3 0 .5.2.6l.7.2ZM23 43V36.4l-.2-.2 1.8-.6v.3h1c.5 0 .9 0 1.2.2.3 0 .6.2.8.3.2.2.4.4.4.6l.2.8a1.5 1.5 0 0 1-.9 1.4c.2 0 .4.1.5.3a1.7 1.7 0 0 1 .6.8l.1.6c0 .2 0 .5-.2.8 0 .2-.2.4-.4.6-.3.2-.5.4-.9.5L26 43H23Zm2.7-1c.4 0 .7 0 1-.3.2-.2.3-.5.3-.8 0-.4-.1-.7-.4-.9-.2-.2-.5-.3-.9-.3h-1.1V42h1.1Zm-.3-5.1h-.8v1.9h1.4l.4-.2.2-.4v-.4c0-.4 0-.6-.3-.7-.2-.2-.5-.2-.9-.2Zm7.4 4.4 1.4.5c-.2.4-.5.8-.9 1-.4.3-1 .4-1.5.4a2.7 2.7 0 0 1-1.9-.7 2.7 2.7 0 0 1-.8-2c0-.5 0-.9.2-1.2l.6-1a2.6 2.6 0 0 1 1.8-.7c.4 0 .7 0 1 .2a2.2 2.2 0 0 1 1.4 1.4l.2 1v.6h-3.6c0 .4.2.8.3 1 .2.3.5.5.8.5.3 0 .6-.1.7-.3.2-.2.3-.4.3-.7Zm0-1.5-.3-.9a.8.8 0 0 0-.7-.3c-.3 0-.5 0-.7.3a2 2 0 0 0-.4 1h2Zm5.7 1.5 1.4.5c-.2.4-.5.8-1 1-.3.3-.8.4-1.4.4a2.7 2.7 0 0 1-1.9-.7 2.7 2.7 0 0 1-.8-2c0-.5 0-.9.2-1.2.2-.4.3-.7.6-1a2.6 2.6 0 0 1 1.8-.7c.4 0 .7 0 1 .2a2.2 2.2 0 0 1 1.4 1.4l.2 1v.6h-3.6c0 .4.1.8.3 1 .2.3.5.5.8.5.3 0 .5-.1.7-.3.2-.2.3-.4.3-.7Zm0-1.5-.3-.9a.8.8 0 0 0-.7-.3c-.3 0-.6 0-.7.3a2 2 0 0 0-.4 1h2Zm3.7-2.3v.8l.7-.5.7-.1c.2 0 .4 0 .6.2.2.1.3.3.3.6l-.2.5c-.2.2-.3.3-.6.3h-.4l-.3-.3v-.2h-.5l-.3.3V43h-1.5v-4.7l-.3-.2 1.8-.6Z"/>
-            <path fill="#C08459" d="m24.8 26.3-.1.2.1-.2Zm.5.3-.1.2.1-.2Zm.6.3v-.2.2Zm.8.5-.1.1v-.1Zm.7.4-.2.2.2-.2Zm.4.6-.1.1h.1Zm0 1.6h-.1.1Zm-.5.7-.1-.2.1.2Zm-3.7 0-.2.2.2-.1Zm-1-1.3-.1-.2-.2.1v.2h.2Zm1.3-.5h.2v-.3l-.3.1.1.2Zm.2.5h-.2v.1h.2Zm.3.5h-.2v.1l.2-.1Zm.4.3-.1.1v-.1Zm1.6-1.3h-.2.2Zm-.4-.4v.2-.2Zm-.4-.3-.1.2v-.2ZM25 28v-.2.2Zm-.8-.4-.1.2v-.2Zm-.7-.5-.2.1.2-.1Zm-.5-.7-.2.1h.2Zm0-1.6.2.1H23Zm.5-.6.1.2-.1-.2Zm2.7-.4v.2-.2Zm.7.3v.2-.2Zm.5.5-.1.1h.1Zm0 1.3.1.2-.1-.2Zm-1.4-.3h-.2v.1h.2Zm.1-.3H26h.2Zm0-.3h-.2.1Zm-.3-.3-.1.2v-.2Zm-1 0 .2.2-.1-.2Zm-.2.2-.2-.1.2.1Zm-.2.3h-.2.2Zm-.2.3.1.6.4-.2-.1-.4h-.4Zm.1.6.4.5.2-.4-.2-.3-.4.2Zm.4.5.5.3.2-.4c-.2 0-.3-.2-.5-.3l-.2.4Zm.5.3.6.3.2-.4-.6-.3-.2.4Zm.6.3.8.4.2-.3-.8-.5-.2.4Zm.8.4.6.5.3-.3-.7-.5-.2.3Zm.6.5.5.5.3-.1-.5-.7-.3.3Zm.5.5.1.7h.4c0-.3 0-.6-.2-.8l-.3.1Zm.1.7-.1.7.3.2c.2-.2.2-.5.2-.9h-.4Zm-.1.7-.5.6.2.3c.3-.2.5-.4.6-.7l-.3-.2Zm-.5.6-.8.4.1.4 1-.5-.3-.3Zm-.8.4-1 .1v.4l1.1-.1v-.4Zm-1 .1c-.7 0-1.3-.1-1.7-.4l-.3.3c.6.4 1.2.5 2 .5V31Zm-1.7-.4c-.5-.3-.8-.7-1-1.2h-.3c.2.7.5 1.2 1 1.5l.3-.3Zm-1-1 1.3-.5-.2-.4-1.3.5.1.4Zm1-.6.2.5.4-.2-.2-.5-.4.2Zm.2.5c0 .2.2.3.3.5l.3-.3-.2-.4-.4.2Zm.3.5c.1.1.3.3.5.3l.2-.3c-.2 0-.3-.2-.4-.3l-.3.3Zm.5.3.6.2V30L25 30l-.2.3Zm.6.2c.4 0 .7-.1 1-.3l-.3-.3a1 1 0 0 1-.7.2v.4Zm1-.3c.2-.2.4-.5.4-.9h-.4c0 .3-.1.5-.3.6l.3.3Zm.4-.9c0-.2 0-.4-.2-.5l-.3.2v.3h.5Zm-.2-.5c0-.2-.2-.3-.3-.4l-.3.3.3.3.3-.2Zm-.3-.4a3 3 0 0 0-.6-.4l-.1.4.4.3.3-.3Zm-.6-.4-.6-.3-.1.4.6.3.1-.4Zm-.6-.3-.7-.4-.2.4.8.4.1-.4Zm-.7-.4a4 4 0 0 1-.7-.5l-.3.3.8.6.2-.4Zm-.7-.5-.4-.5-.4.1.5.7.3-.3Zm-.4-.5-.2-.8h-.4c0 .3 0 .7.2 1l.4-.2Zm-.2-.8c0-.3 0-.5.2-.7l-.4-.2a2 2 0 0 0-.2.9h.4Zm.2-.7c0-.2.2-.4.4-.5l-.2-.4-.6.7.4.2Zm.4-.5.7-.4v-.4l-1 .4.3.4Zm.7-.4 1-.1v-.4l-1 .1v.4Zm1-.1h.8l.1-.3-.9-.1v.4Zm.8 0 .7.4.2-.4-.8-.3v.4Zm.7.4.5.4.3-.2-.6-.6-.2.4Zm.5.4.1.6h.4c0-.3 0-.5-.2-.8l-.3.2Zm.1.6-.1.5.2.3c.2-.2.3-.5.3-.8h-.4Zm-.1.5h-.5v.5c.3 0 .5 0 .7-.2l-.2-.3Zm-.5 0h-.4a.6.6 0 0 1-.2-.3l-.4.2.4.4.6.2v-.4Zm-.6 0 .1-.5H26v.2l.3.2Zm.1-.5v-.4l-.4.2v.2h.4Zm0-.4-.4-.4-.2.4.2.2.3-.2Zm-.4-.4a1 1 0 0 0-.6 0v.3h.4l.2-.3Zm-.6 0h-.5l.2.4h.3v-.5Zm-.5 0a1 1 0 0 0-.4.3l.3.2.3-.1-.2-.4Zm-.4.3-.2.3.4.2.1-.3-.3-.2Zm-.2.4v.3h.4v-.2l-.4-.1Zm9.1.4h.2v-.3l-.2.1v.2Zm0 5.5v.2h.2V31h-.2Zm-1.5 0h-.2v.2h.2V31Zm0-.4h.2v-.4l-.3.3.1.1Zm-.6.4v-.2.2Zm-1.5 0v-.3.2Zm-.6-.6-.2.2.2-.2Zm-.3-.6h-.2.2Zm-.2-3.4h-.2.2Zm-.1-.2-.1-.2-.5.1.5.3v-.2Zm1.7-.6h.2v-.3l-.3.1.1.2Zm.2 4.3-.2.1.2-.1Zm1 .1.1.2V30Zm.4-.2.2.1v-.1h-.2Zm0-3.5h-.2.2Zm-.2-.2v-.2l-.6.2.5.2V26Zm1.5-.6V31h.4v-5.5h-.4Zm.2 5.3h-1.5v.4h1.5v-.4ZM32 31v-.4h-.4v.4h.4Zm-.3-.5-.5.3.1.4.7-.4-.3-.3Zm-.5.3h-.6v.5l.7-.1-.1-.4Zm-.6 0h-.8l-.2.3 1 .2v-.4Zm-.8 0-.6-.5-.3.3.7.5.2-.4Zm-.6-.5-.2-.5h-.4c0 .3.2.6.3.8l.3-.3Zm-.2-.5-.1-.6h-.4v.7l.5-.1Zm-.1-.6v-2.6h-.4v2.6h.4Zm0-2.6v-.3l-.4.1v.2h.4Zm0-.3c-.1-.2-.2-.3-.4-.3l-.1.4.4-.1Zm-.4 0 1.8-.5-.2-.4-1.7.6.1.4Zm1.5-.7V29h.4v-3.5H30Zm0 3.5c0 .4 0 .7.2.9l.4-.2-.2-.7H30Zm.2.9c.2.2.5.3.8.3V30l-.4-.1-.4.2Zm.8.3h.5l-.1-.4H31v.4Zm.5 0 .5-.4-.3-.3-.3.3.1.3Zm.5-.5v-3.3h-.4v3.3h.4Zm0-3.3v-.3l-.4.2v.1h.4Zm0-.3-.3-.3-.2.4h.5Zm-.3 0 1.7-.5-.1-.4-1.8.6.2.4Zm4-.7h.2v-.3l-.2.1v.2Zm0 .5h-.2v.3l.3-.2V26Zm2.2-.1-.1.1V26Zm.6.4-.2.1h.2Zm.4 4.7v.2h.2V31h-.2Zm-1.5 0h-.2v.2h.2V31Zm-.2-4.1-.2.1.2-.1Zm-1.1-.2v.2-.2Zm-.4.1v-.2l-.2.1v.1h.2Zm0 4.2v.2h.2V31h-.2Zm-1.5 0H34v.2h.2V31Zm0-4.7H34h.2ZM34 26v-.2l-.6.2.5.2V26Zm1.5-.6v.5h.4v-.5h-.4Zm.3.6.6-.2-.1-.3c-.2 0-.5 0-.7.2l.2.3Zm.6-.2h.5v-.4h-.6v.4Zm.5 0 .9.1.2-.3c-.3-.2-.7-.2-1-.2v.4Zm.9.1.5.4.3-.2-.6-.5-.2.3Zm.5.4.3.6.4-.1c0-.3-.2-.5-.4-.7l-.3.2Zm.3.6v.6h.5l-.1-.7h-.4Zm0 .6V31h.5v-3.4h-.4Zm.3 3.2h-1.5v.4h1.5v-.4Zm-1.3.2v-3.3h-.4V31h.4Zm0-3.3c0-.4-.1-.7-.3-1l-.3.3c.1.1.2.3.2.7h.4Zm-.3-1c-.2-.2-.5-.3-.8-.3v.4c.3 0 .4.1.5.2l.3-.2Zm-.8-.3-.5.1.1.4h.4v-.5Zm-.5.1-.4.1.2.4.3-.1v-.4Zm-.5.3V31h.4v-4.2h-.4Zm.2 4h-1.5v.4h1.5v-.4Zm-1.3.2v-4.5H34V31h.4Zm0-4.5v-.3l-.4.2v.1h.4Zm0-.3L34 26l-.2.4h.5Zm-.3 0 1.7-.5-.1-.4-1.8.6.2.4Zm9.6 0-.1-.2-.2.1.2.2V26Zm.5 2H44h.2Zm-2.5 1v.2-.2Zm-.3 0v.3-.2Zm-.2.1v.2h.1l-.1-.2Zm.9.5v.2-.2Zm.9.1v.2-.2Zm.9.1v.2-.2Zm.7.4v-.2.2Zm0 1.2-.2-.1.2.1Zm-1.5.7v-.2.2Zm-1.8 0v-.2.2Zm-.9-.2v.2-.2Zm-.6-.4-.1.2.1-.2Zm-.1-.9h-.2.2Zm.2-.2-.2-.2.2.2Zm.2-.2v-.2H40l.1.2Zm.3-.2v.2l.4-.2-.3-.2-.1.2Zm-.5-.3-.1.2.1-.2Zm.1-.8.1.2V29Zm.6-.3v.2l.6-.2-.5-.2-.1.2Zm-.7-.5-.1.1.1-.1Zm0-1.7-.2-.1.2.1Zm.6-.5-.2-.2.2.2Zm2.2-.4v.2-.2Zm.6.2-.1.2h.2l-.1-.2Zm.6-.5v.2-.2Zm1 0v.1-.1Zm-.7.9-.2-.1v.2l.2-.1Zm0-.2H44v.1l.2-.1Zm-2.7 4.3v-.1h-.1v.1Zm-.3.3-.2-.1.2.1Zm0 .5.1-.1v.1Zm.3.2v.2-.2Zm1.5 0v-.2.2Zm-.4-.8v.2-.2Zm-1.2-3.8.2.2-.2-.2Zm0 1.3v.2-.2Zm2.6-2.3c-.1 0-.3 0-.4.2l.2.3.2-.1v-.4Zm-.4.5.4.5.4-.3-.6-.5-.2.3Zm.4.5c.2.1.2.4.2.7h.4c0-.4 0-.7-.2-1l-.4.3Zm.2.7c0 .2 0 .4-.2.6l.4.2.2-.8h-.4Zm-.2.6c0 .2-.2.4-.4.5l.2.3c.3-.1.5-.3.6-.6l-.4-.2Zm-.4.5-.7.3v.4c.4 0 .7-.2 1-.4l-.3-.3Zm-.7.3-.9.1v.4l1-.1-.1-.4Zm-.9.1h-.3v.4h.3V29Zm-.3 0h-.3v.5h.3V29Zm-.3 0-.3.2.2.3h.1V29Zm-.3.2-.2.2h.4a.1.1 0 0 1 0 .1l-.2-.3Zm-.2.2c0 .2 0 .3.2.3l.2.2.1-.4h-.5Zm.4.5.7.1.1-.4-.7-.1v.4Zm.8.1.9.1v-.4h-1v.3Zm.9.1.8.1.1-.3-1-.2v.4Zm.8.1.6.3.3-.3c-.2-.2-.5-.3-.8-.3v.3Zm.6.3c.2.1.2.3.2.4h.4c0-.3 0-.5-.3-.7l-.3.3Zm.2.4c0 .3 0 .4-.2.6l.3.3c.2-.3.3-.5.3-.9h-.4Zm-.2.6-.5.4.1.4c.3-.2.6-.3.7-.5l-.3-.3Zm-.5.4-.8.2v.4l1-.2-.2-.4Zm-.8.2-1 .1v.4h1V32Zm-1 .1h-.8v.3l.9.1v-.4Zm-.8 0-.8-.3-.1.4.9.2v-.4Zm-.8-.3c-.2 0-.4-.2-.5-.3l-.3.3.7.4.1-.4Zm-.5-.3a.5.5 0 0 1-.2-.4h-.4c0 .2 0 .5.3.7l.3-.3Zm-.2-.4v-.3l-.3-.1-.1.4h.4Zm0-.3.2-.2-.3-.3-.2.3.3.2Zm.2-.2.2-.2-.2-.3-.3.2.3.3Zm.2-.2.3-.1-.2-.4-.3.2.2.3Zm.3-.5a3 3 0 0 1-.5-.2l-.2.3.5.3.2-.4Zm-.4-.2-.1-.2h-.4c0 .2 0 .4.2.5l.3-.3Zm-.1-.2.1-.3-.2-.4c-.2.2-.3.4-.3.7h.4Zm.1-.4.6-.2-.2-.4a2 2 0 0 0-.6.3l.2.3Zm.6-.6-.6-.4-.3.2.7.6.2-.4Zm-.6-.4-.2-.7h-.4c0 .3 0 .6.3.9l.3-.2Zm-.2-.7c0-.4 0-.6.2-.8l-.4-.2-.2 1h.4Zm.2-.8.5-.5-.3-.3-.6.6.4.2Zm.5-.5.7-.2-.1-.4-.9.3.3.3Zm.7-.2.8-.1v-.4h-1l.2.5Zm.8-.1h.5l.1-.4h-.6v.4Zm.5 0 .6.2.1-.4-.6-.2v.4Zm.8.1.6-.4-.2-.4a2 2 0 0 0-.7.6l.3.2Zm.6-.4c.2-.2.3-.2.5-.2V25c-.2 0-.5 0-.7.2l.2.4Zm.5-.2.3.1.3-.2a.8.8 0 0 0-.6-.3v.4Zm.3.1.2.4h.4c0-.3-.1-.5-.3-.7l-.3.3Zm.2.4-.1.3.3.3.2-.6H45Zm-.1.3h-.3v.5c.2 0 .4 0 .6-.2l-.3-.3Zm-.3 0h-.2l-.4.2.6.3v-.4Zm-.2.2V26l-.4.2.4.2Zm0-.4-.4-.2v.4l.3-.2Zm-3 4.3c-.2 0-.3.2-.4.3l.4.2.2-.2-.3-.3Zm-.4.3v.4h.3v-.2l-.3-.2Zm0 .4v.4l.3-.3H41Zm0 .4.5.2v-.4l-.2-.1-.2.3Zm.5.2h.4v-.3l-.3-.1-.1.4Zm.4 0h.5v-.3a5 5 0 0 1-.5 0v.4Zm.5 0h.7l-.1-.4h-.6v.5Zm.7 0 .3-.3.1-.3h-.4l-.1.2.1.3Zm.4-.6c0-.2-.1-.4-.3-.4l-.2.3.1.1h.4Zm-.3-.4-.6-.2v.4l.4.1.2-.3Zm-.6-.2H42v.3h.5v-.3Zm-.6 0-.5-.1v.3l.4.1v-.4Zm0-2c.3 0 .6 0 .8-.2l-.3-.3-.4.2v.4Zm.8-.2c.2-.1.3-.4.3-.7h-.4c0 .2 0 .4-.2.4l.3.3Zm.3-.7c0-.4-.1-.7-.3-.8l-.3.3c.1 0 .2.2.2.5h.4Zm-.3-.8c-.2-.2-.5-.3-.7-.3v.4c.1 0 .3 0 .4.2l.3-.3Zm-.7-.3c-.3 0-.6.1-.8.3l.3.3.5-.2v-.4Zm-.8.3c-.2.1-.3.4-.3.8h.4c0-.3 0-.5.2-.5l-.3-.3Zm-.3.8c0 .3.1.6.3.8l.3-.4-.2-.4H41Zm.3.8.8.2V28c-.3 0-.4 0-.5-.2l-.3.4ZM23.1 43H23v.2h.2V43Zm0-6.6h-.2.2Zm-.2-.2V36l-.6.2.5.2.1-.2Zm1.8-.6h.2v-.3l-.3.1.1.2Zm0 .3h-.2v.2h.2V36Zm2.2.2v.1-.1Zm.8.3-.1.2.1-.2Zm.4.6-.1.1h.1Zm0 1.6.1.1h-.1Zm-.7.6V39l-.5.2.4.2.1-.2Zm.5.3-.1.1.1-.1Zm.4.4.1-.2-.1.2Zm-.3 2.4-.2-.1.2.1Zm-.9.5v-.2.2Zm-.4-1h.2-.2Zm0-1.8-.1.2.1-.2Zm-2-.3v-.2h-.2v.2h.2Zm0 2.3h-.2v.2h.2V42Zm0-5.1v-.2h-.2v.2h.2Zm0 1.9h-.2v.2h.2v-.2Zm1.4 0v.1-.2Zm.6-.6.2.1h-.2Zm-.3-1.1v.1-.1Zm-3 5.9v-6.4h-.5V43h.4Zm0-6.4-.1-.3-.4.2v.1h.4Zm-.1-.3L23 36l-.2.4h.5Zm-.3 0 1.8-.5-.2-.4-1.7.6v.4Zm1.5-.7v.3h.4v-.3h-.4Zm.2.5h1v-.4h-1v.4Zm1 0 1.2.1V36l-1.2-.2v.4Zm1.2.1.7.4.2-.3-.8-.4-.1.3Zm.7.4.4.5.3-.1c0-.3-.2-.5-.5-.7l-.2.3Zm.4.5v.7h.5c0-.3 0-.6-.2-.8l-.3.1Zm0 .7-.1.7.3.2c.2-.3.3-.6.3-1H28Zm-.1.7c-.2.2-.3.4-.6.5l.2.4.7-.7-.3-.2Zm-.6.9.5.2.2-.3a2 2 0 0 0-.5-.3l-.2.4Zm.5.2.3.4.3-.3-.4-.4-.2.3Zm.3.4.2.4.4-.1-.3-.6-.3.3Zm.2.4.1.5h.4v-.6l-.5.1Zm.1.5-.1.7.3.1.2-.8h-.4Zm-.1.7-.5.6.3.3.5-.8-.3-.1Zm-.5.6-.7.4v.4l1-.5-.3-.3Zm-.8.4-1.1.2v.4l1.3-.2-.2-.4Zm-1.1.2H23v.4H26v-.4Zm0-.6c.3 0 .7-.1 1-.3l-.3-.3-.8.2v.4Zm1-.3c.3-.3.4-.6.4-1h-.4c0 .3-.1.5-.3.7l.3.3Zm.4-1c0-.4-.1-.8-.4-1l-.3.3c.2.1.3.4.3.7h.4Zm-.4-1c-.3-.3-.6-.4-1-.4v.4c.3 0 .5.1.7.3l.3-.3Zm-1-.4h-1.2v.4h1.1v-.4Zm-1.4.2V42h.4v-2.3h-.4Zm.2 2.5h1.1v-.4h-1.1v.4Zm.8-5.5h-.8v.4h.8v-.4Zm-1 .2v1.9h.4v-2h-.4Zm.2 2h1v-.3h-1v.4Zm1 0h.5l-.1-.4h-.4v.5Zm.5 0c.1 0 .3 0 .4-.2l-.3-.3-.2.1v.4Zm.4-.2.3-.4-.4-.1-.2.2.3.3Zm.3-.4v-.5h-.3v.4l.3.1Zm0-.5c0-.4 0-.7-.4-1l-.2.4c.2.1.3.3.3.6h.4Zm-.3-1a2 2 0 0 0-1-.1v.4l.7.1.3-.3Zm6.3 4.5.1-.2h-.2v.2h.1Zm1.4.5h.2l.1-.2h-.2v.2Zm-.9 1-.1-.1.1.1Zm-2.5.2v-.2.2Zm-.9-.5-.1.1.1-.1Zm-.6-.9h-.2.2Zm3.4-3.8v.2-.2Zm.8.5-.1.2.1-.2Zm.6.9H34h.2Zm.2 1.6v.2h.2v-.2h-.2Zm-3.6 0v-.2h-.2v.2h.2Zm.3 1-.1.2.1-.1Zm1.8-2v.2h.2v-.2h-.2Zm-.3-.9-.2.1h.2Zm-1.4 0-.2-.1.2.1Zm-.4 1h-.2v.1h.2v-.2Zm2 1.6 1.5.5v-.4L33 41l-.1.4Zm1.3.2a2 2 0 0 1-.8 1l.2.3c.5-.3.8-.7 1-1.2l-.4-.1Zm-.8 1c-.4.2-.9.3-1.4.3v.4a3 3 0 0 0 1.6-.4l-.2-.3Zm-1.4.3c-.3 0-.6 0-1-.2v.4c.3.2.6.2 1 .2V43Zm-1-.2c-.2 0-.5-.2-.7-.5l-.3.3c.3.3.6.5 1 .6v-.4Zm-.7-.5c-.3-.2-.4-.5-.6-.8l-.4.2.7 1 .3-.4Zm-.6-.8-.2-1H29c0 .4 0 .8.2 1.2l.4-.2Zm-.2-1c0-.5 0-.9.2-1.2l-.4-.1-.2 1.2h.4Zm.2-1.2.5-.8-.2-.3-.7 1 .4.1Zm.5-.8.8-.5-.1-.4-1 .6.3.3Zm.8-.5 1-.2v-.4c-.5 0-.8 0-1.1.2l.1.4Zm1-.2c.3 0 .6 0 .9.2l.1-.4a3 3 0 0 0-1-.2v.4Zm.9.2.7.5.3-.3-.9-.6-.1.4Zm.7.5.5.7.4-.1-.6-.9-.3.3Zm.5.7.2 1h.4l-.2-1.1-.4.1Zm.2 1v.6h.4v-.6h-.4Zm.2.4h-3.6v.4h3.6v-.4Zm-3.8.2c0 .5.2.9.4 1.2l.3-.2c-.2-.3-.3-.6-.3-1h-.4ZM31 42c.2.3.5.5 1 .5V42a.7.7 0 0 1-.7-.3l-.3.2Zm1 .5c.3 0 .6-.1.8-.4l-.3-.2-.6.2v.4Zm.8-.4c.2-.2.3-.4.3-.7l-.4-.1c0 .2 0 .4-.2.6l.3.2Zm.3-2.3c0-.4-.2-.7-.4-1l-.3.2.3.9h.4Zm-.4-1a1 1 0 0 0-.8-.4v.4c.2 0 .4 0 .5.2l.3-.2Zm-.8-.4a1 1 0 0 0-.9.4l.3.2.6-.2v-.4Zm-.9.4-.4 1h.4c0-.3.2-.6.3-.8l-.3-.2Zm-.2 1.2h2v-.4h-2v.4Zm7.8 1.3v-.2h-.1v.2h.1Zm1.4.5h.2v-.2h-.1v.2Zm-1 1v-.1.1Zm-2.4.2v-.2.2Zm-.9-.5-.1.1.1-.1Zm-.6-.9H35h.2Zm3.4-3.8v.2-.2Zm.8.5-.1.2.1-.2Zm.6.9h-.2.2Zm.2 1.6v.2h.2v-.2H40Zm-3.6 0v-.2h-.2v.2h.2Zm.3 1-.1.2.1-.1Zm1.7-2v.2h.3v-.2h-.3Zm-.2-.9-.2.1h.2Zm-1.4 0-.2-.1.2.1Zm-.4 1h-.2v.1h.2v-.2Zm2 1.6 1.5.5v-.4l-1.3-.5-.1.4Zm1.3.2a2 2 0 0 1-.8 1l.2.3c.5-.3.8-.7 1-1.2l-.4-.1Zm-.8 1c-.4.2-.9.3-1.4.3v.4a3 3 0 0 0 1.6-.4l-.2-.3Zm-1.4.3c-.3 0-.6 0-1-.2l-.1.4c.4.2.7.2 1.1.2V43Zm-1-.2c-.3 0-.5-.2-.8-.5l-.2.3c.2.3.6.5.9.6l.1-.4Zm-.8-.5-.5-.8-.4.2.7 1 .2-.4Zm-.5-.8-.2-1h-.4c0 .4 0 .8.2 1.2l.4-.2Zm-.2-1c0-.5 0-.9.2-1.2l-.4-.1-.2 1.2h.4Zm.2-1.2.5-.8-.3-.3-.6 1 .4.1Zm.5-.8.8-.5-.2-.4-.9.6.3.3Zm.8-.5.9-.2v-.4c-.4 0-.7 0-1 .2v.4Zm.9-.2c.3 0 .7 0 1 .2v-.4a3 3 0 0 0-1-.2v.4Zm1 .2.7.5.3-.3c-.3-.3-.6-.4-1-.6v.4Zm.7.5.5.7.3-.1c0-.4-.3-.7-.5-.9l-.3.3Zm.5.7.2 1h.4c0-.4-.1-.8-.3-1.1l-.3.1Zm.2 1v.6h.4v-.6h-.4Zm.2.4h-3.6v.4H40v-.4Zm-3.8.2c0 .5.1.9.4 1.2l.3-.2c-.2-.3-.3-.6-.3-1h-.4Zm.4 1.2c.2.3.5.5.9.5V42a.7.7 0 0 1-.6-.3l-.3.2Zm.9.5c.3 0 .6-.1.9-.4l-.3-.2-.6.2v.4Zm.9-.4c.1-.2.3-.4.3-.7l-.4-.1-.2.6.3.2Zm.2-2.3c0-.4 0-.7-.3-1l-.3.2.2.9h.4Zm-.3-1a1 1 0 0 0-.8-.4v.4c.2 0 .4 0 .5.2l.3-.2Zm-.8-.4a1 1 0 0 0-.9.4l.3.2.6-.2v-.4Zm-.9.4-.4 1h.4c0-.3.2-.6.3-.8l-.3-.2Zm-.2 1.2h2v-.4h-2v.4Zm5.8-2.5h.2v-.3l-.3.1v.2Zm0 .8H42v.5l.3-.3-.1-.2Zm.7-.5-.1-.1v.1Zm1.3 0-.1.2.1-.1Zm0 1.2V39h-.1l.2.1Zm-.9.2v.2-.2Zm-.3-.2H43v.2l.2-.2Zm-.5-.2.1.2v-.2Zm-.3.3-.2-.2v.2h.2Zm0 3.9v.2h.2V43h-.2Zm-1.5 0h-.2v.2h.2V43Zm0-4.7h-.3.2Zm-.3-.2v-.2l-.5.2.4.2.1-.2Zm1.6-.6v.8h.4v-.8H42Zm.3 1 .7-.5-.2-.3c-.3 0-.5.3-.8.5l.3.3Zm.7-.5.6-.1v-.4c-.3 0-.5 0-.8.2l.2.3Zm.6-.1.5.1.2-.3c-.2-.2-.4-.2-.7-.2v.4Zm.5.1.2.5h.4a1 1 0 0 0-.4-.8l-.2.3Zm.2.5-.2.4.3.3c.2-.2.3-.5.3-.7h-.4Zm-.2.4-.4.2v.4c.3 0 .5-.1.7-.3l-.3-.3Zm-.4.2h-.3l-.1.3h.4v-.3Zm-.3 0-.2-.2-.3.3.4.2V39Zm-.2 0v-.4l-.4.2.4.2Zm0-.4-.4-.2v.4l.4-.2Zm-.4-.2a1 1 0 0 0-.4.1l.2.4h.2v-.5Zm-.4.1-.4.3.3.3.3-.2-.2-.4Zm-.4.5V43h.4v-4H42Zm.2 3.7h-1.5v.4h1.5v-.4ZM41 43v-4.5h-.4V43h.4Zm0-4.5-.1-.3-.4.2v.1h.5Zm-.1-.3-.3-.3-.2.4h.5Zm-.3 0 1.7-.5v-.4l-1.8.6v.4Z"/>
-            <g filter="url(#sideSymbol1_f_46_2)">
-              <path fill="#fff" fill-opacity=".5" d="M21.8 2.7c3.2-.7 5.2-.8 9-.7l-.9.7c-3.5-.2-5.5 0-9 .7l.9-.7Z"/>
-            </g>
-            <g filter="url(#sideSymbol2_f_46_2)">
-              <path fill="#fff" fill-opacity=".5" d="M29.9 61.4c-3.3.2-5.3 0-9.1-.7l1-.5c3.5.7 5.5.8 9.1.7l-1 .5Z"/>
-            </g>
-            <g filter="url(#sideSymbol3_f_46_2)">
-              <path fill="#fff" fill-opacity=".5" d="M20.8 6.7h8.3v50.7h-8.3z"/>
-            </g>
-            <defs>
-              <filter id="sideSymbol0_f_46_2" width="66" height="43" x="0" y="36.6" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-                <feGaussianBlur result="effect1_foregroundBlur_46_2" stdDeviation="6"/>
-              </filter>
-              <filter id="sideSymbol1_f_46_2" width="12.1" height="3.4" x="19.8" y=".9" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-                <feGaussianBlur result="effect1_foregroundBlur_46_2" stdDeviation=".5"/>
-              </filter>
-              <filter id="sideSymbol2_f_46_2" width="14.1" height="5.3" x="18.8" y="58.2" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-                <feGaussianBlur result="effect1_foregroundBlur_46_2" stdDeviation="1"/>
-              </filter>
-              <filter id="sideSymbol3_f_46_2" width="16.3" height="58.7" x="16.8" y="2.7" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
-                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-                <feGaussianBlur result="effect1_foregroundBlur_46_2" stdDeviation="2"/>
-              </filter>
-            </defs>
-          </svg>
-          <li>home</li>
-          <li>sung beer 즐기기</li>
-          <li>브랜드 스토리</li>
-          <li>영양 정보</li>
-        </ul>
-      </div>
-    </transition>
+  <div class="dd">
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 639 898">
+  <g id="Group 19">
+    <g id="dispenser">
+      <path id="Rectangle 72" fill="#B6B6B6" d="M319 11.9C416.3-4 468.9-4 559 11.9l30 800H289l30-800Z"/>
+      <path id="Rectangle 74" fill="url(#paint0_linear_53_48)" d="M239 811.9h400v86H239z"/>
+      <path id="Sung Beer" fill="#FDFF86" d="M383.3 347.1c0 1 .2 2 .7 2.8.4.8 1 1.6 2 2.3.7.7 1.7 1.3 2.8 2l3.6 1.8 4.8 2.5c1.5.9 2.9 1.9 4 3 1.2 1 2.2 2.2 2.9 3.6.7 1.4 1 3 1 4.7 0 1.7-.3 3.4-1 4.9-.8 1.4-1.9 2.6-3.2 3.7-1.4 1-3 1.9-5 2.5-1.9.5-4 .8-6.4.8-4.6 0-8.3-.9-11.1-2.7a15.4 15.4 0 0 1-6.1-8l8.1-3.2 1.1 3.1c.5 1 1 2 1.7 2.7a8 8 0 0 0 2.4 1.8 8 8 0 0 0 3.5.7c2 0 3.6-.5 4.8-1.4 1.3-1 2-2.5 2-4.4 0-1-.3-1.9-.8-2.6-.4-.8-1-1.5-1.9-2.1-.8-.7-1.8-1.3-2.9-2a60 60 0 0 0-3.6-1.8l-4.7-2.4-4.1-3a14.7 14.7 0 0 1-2.9-3.9 12 12 0 0 1 0-9.8 10 10 0 0 1 3-3.7c1.3-1 3-1.8 4.8-2.3a21.3 21.3 0 0 1 11.4-.1c1.7.4 3.1 1 4.4 1.9 1.3.9 2.3 1.9 3 3.1a7.4 7.4 0 0 1 1 4c0 1.7-.4 3-1.3 3.7-1 .7-2 1-3.3 1-2.3 0-4-.9-4.8-2.7.4-.6.6-1.2.6-2 0-.7-.1-1.4-.5-2-.4-.6-.9-1-1.6-1.5-.8-.4-1.7-.6-2.7-.6-1 0-2 .2-2.7.5a4.9 4.9 0 0 0-2.7 3l-.3 2.1Zm53.8.4v32.7H428v-2c-1 1-2.2 1.6-3.5 2-1.4.5-2.7.8-4.2.8-2.1 0-3.9-.4-5.3-1.1a10 10 0 0 1-5.4-6.5c-.3-1.4-.5-2.7-.5-4v-15.3c0-.6 0-1-.3-1.5a2 2 0 0 0-1-1.2l10.4-3.5v21.2c0 2 .4 3.5 1.2 4.6a4 4 0 0 0 3.3 1.6c1.1 0 2.1-.2 3-.6.9-.5 1.6-1 2.3-1.6v-19.4c0-.6-.1-1-.3-1.5a2 2 0 0 0-1.1-1.2l10.5-3.5Zm14.3 0v2.7c1.2-.5 2.3-1 3.5-1.3a14 14 0 0 1 3.6-.4c2.4 0 4.3.3 5.8 1 1.5.8 2.7 1.7 3.6 2.8.9 1.1 1.5 2.4 1.9 3.7.3 1.4.5 2.7.5 4v20.2h-9v-19.8c0-2-.5-3.6-1.3-4.6-.8-1.1-2.3-1.7-4.2-1.7a11.7 11.7 0 0 0-4.3 1.2v24.9h-9.2v-26.5c0-.6 0-1-.3-1.5a2 2 0 0 0-1-1.2l10.4-3.5Zm49.7 2.9a3 3 0 0 0-2 .8c1.3 1 2.4 2 3.2 3.2a8.3 8.3 0 0 1 1.2 4.7 9.7 9.7 0 0 1-4.3 8c-1.3.8-2.8 1.5-4.6 2-1.8.5-3.6.7-5.6.7a30.1 30.1 0 0 0-3.6.2c-.5.1-1 .2-1.2.4-.3.2-.5.4-.5.7 0 .6.6 1.1 1.6 1.4 1.1.4 2.5.6 4.1.8l5.4.5c2 .2 3.7.5 5.4 1 1.7.3 3 1 4.1 1.8 1.1.8 1.7 2 1.7 3.5 0 1.6-.5 3-1.5 4-1 1.2-2.2 2-3.7 2.8a30.2 30.2 0 0 1-21 .2 12 12 0 0 1-3.8-2.3 4.5 4.5 0 0 1-1-5.3 8.7 8.7 0 0 1 2.7-2.9 93 93 0 0 1 1.7-1c-1.3-.6-2.2-1.1-2.8-1.6-.7-.5-1-1.3-1-2.3 0-1 .5-2 1.5-2.7 1-.8 2.1-1.4 3.5-1.8-1.6-.8-2.9-1.8-4-3a8 8 0 0 1-1.4-5 9.4 9.4 0 0 1 4.5-8.5c1.4-.8 3-1.4 4.6-1.7a24.6 24.6 0 0 1 8.7-.2c1.3.2 2.5.5 3.6 1a11 11 0 0 1 3.6-3.1 8 8 0 0 1 3.8-1.1c1.2 0 2.1.4 2.9 1.2.7.7 1 1.6 1 2.8 0 1.2-.2 2.2-.8 2.8a3 3 0 0 1-2.2 1c-1.3 0-2.2-.5-2.7-1.4.2-.4.2-.8 0-1-.3-.4-.7-.6-1-.6ZM485.8 377l-1.6 1.6c-.4.6-.6 1.2-.6 1.8 0 .5.3 1 .7 1.4.5.4 1 .6 1.8.8a30.7 30.7 0 0 0 5.2.5 10 10 0 0 0 3.9-.6c1.1-.5 1.7-1.2 1.7-2s-.5-1.3-1.4-1.7c-.9-.4-2-.7-3.2-1l-3.7-.4-2.8-.4Zm3.5-13c1.4 0 2.6-.4 3.6-1.2 1-.7 1.5-2 1.5-3.8 0-1.7-.5-3-1.5-3.8-1-.8-2.2-1.2-3.6-1.2s-2.6.4-3.6 1.2c-1 .8-1.5 2-1.5 3.8 0 1.8.5 3.1 1.5 3.9 1 .7 2.2 1.1 3.6 1.1Zm-113.4 86v-37.9l-.3-1.5a2 2 0 0 0-1.1-1l10.7-3.6v1.8h6.3c2.7 0 5 .2 7 .8 2 .6 3.5 1.4 4.8 2.4 1.2 1 2 2.1 2.6 3.6.6 1.3.9 2.8.9 4.5a9 9 0 0 1-5.4 8.3c1.2.4 2.2 1 3 1.7a10 10 0 0 1 3.7 5.3c.3 1 .5 2 .5 3.2 0 1.6-.3 3.2-1 4.7-.6 1.5-1.5 2.9-2.9 4a14 14 0 0 1-5 2.7c-2 .7-4.6 1-7.5 1H376Zm16-5.6a8 8 0 0 0 5.6-1.8c1.3-1.2 2-2.9 2-5 0-2.2-.7-4-2-5.2a7.7 7.7 0 0 0-5.6-1.9h-6.7v13.9h6.7Zm-1.8-31h-4.9v11.6h6c.9 0 1.7-.1 2.5-.3a6 6 0 0 0 2.1-1c.6-.5 1-1.1 1.4-1.9.4-.8.6-1.7.6-2.7 0-2.2-.7-3.6-2.1-4.4-1.4-.9-3.2-1.3-5.6-1.3Zm44.6 26.9 8.3 2.6c-1.1 2.8-3 5-5.6 6.5a17.2 17.2 0 0 1-8.9 2.2 16.4 16.4 0 0 1-11.4-4.4 16.3 16.3 0 0 1-4.8-12.3c0-2.6.4-5 1.3-7a15.3 15.3 0 0 1 14.3-9.8c2.2 0 4.2.3 6.1 1a13.5 13.5 0 0 1 8 8.2c.8 2 1.2 4 1.2 6.5v3.3h-21.4c.3 2.7 1 4.9 2 6.5a5.4 5.4 0 0 0 4.7 2.4c1.8 0 3.3-.5 4.2-1.6 1-1.1 1.7-2.5 2-4.1Zm-.5-9c-.2-2.1-.8-4-1.8-5.4a4.5 4.5 0 0 0-4-2.2c-1.8 0-3.2.7-4.3 2.1-1.1 1.4-1.8 3.2-2 5.6h12Zm34.6 9 8.3 2.6c-1.1 2.8-3 5-5.6 6.5a17.2 17.2 0 0 1-8.9 2.2 16.4 16.4 0 0 1-11.4-4.4 16.3 16.3 0 0 1-4.8-12.3c0-2.6.4-5 1.3-7a15.3 15.3 0 0 1 14.3-9.8c2.2 0 4.2.3 6.1 1a13.5 13.5 0 0 1 8 8.2c.8 2 1.2 4 1.2 6.5v3.3H456c.3 2.7 1 4.9 2 6.5a5.4 5.4 0 0 0 4.7 2.4c1.8 0 3.3-.5 4.2-1.6 1-1.1 1.7-2.5 2-4.1Zm-.5-9c-.2-2.1-.8-4-1.8-5.4a4.5 4.5 0 0 0-4-2.2c-1.8 0-3.2.7-4.3 2.1-1 1.4-1.8 3.2-2 5.6h12.1Zm22.3-13.9v4.9c1.4-1.3 2.8-2.2 4.2-3 1.5-.6 2.9-1 4.1-1 1.7 0 3 .4 4 1.3 1 .8 1.4 2 1.4 3.4s-.4 2.6-1.1 3.5c-.8.9-1.8 1.4-3.2 1.4-.9 0-1.7-.1-2.5-.3a4 4 0 0 1-1.8-1c.2-.6.2-1 0-1.4-.3-.3-.6-.5-1-.5-.6 0-1.2.2-2 .5-.7.3-1.4.8-2 1.4v23.5h-9.2v-26.5c0-.6 0-1-.3-1.5a2 2 0 0 0-1-1.2l10.4-3.5Z"/>
+      <g id="Rectangle 73" filter="url(#filter0_f_53_48)">
+        <path fill="#fff" fill-opacity=".4" d="M355 32.9h42v736h-42z"/>
+      </g>
+      <g id="pour">
+        <path id="Rectangle 81" fill="#CF9F20" d="M430 281a35.8 35.8 0 0 0 17 0v261h-17V281Z"/>
+        <g id="Rectangle 72_2" filter="url(#filter1_f_53_48)">
+          <path fill="#fff" d="M434 281.9h4v252.7c-.7 6.7-1.8 5-4 0V281.8Z"/>
+        </g>
+      </g>
+      <path id="Rectangle 76" fill="#121212" d="M427 213.9h23v66c-8.8 4.7-13.8 4.7-23 0v-66Z"/>
+      <g id="beerMug">
+        <g id="mug" fill="#E3E3E3">
+          <path id="Rectangle 70" d="M523.5 610.8a15 15 0 0 1 15-15h17.9a32.9 32.9 0 0 1 32.9 32.9v91.6a33 33 0 0 1-21.7 31l-25.5 9.1A13.9 13.9 0 1 1 534 734l13.5-3.4c14-3.6 24-16.3 24-30.8v-50a24 24 0 0 0-24-23.9h-9a15 15 0 0 1-15-15Z"/>
+          <path id="Rectangle 69" d="M354 541.5a1488 1488 0 0 1 181.3 0v264.7c-71.6 7.4-111.3 8-181.3 0V541.5Z"/>
+        </g>
+        <g id="filling">
+          <path id="liquid" fill="url(#paint1_linear_53_48)" d="M362 541.3c62.8-10 99-10 165.2 0v258.4c-65.1 10.3-101.4 11-165.1 0V541.3Z"/>
+          <path id="beerBubble" fill="url(#paint2_linear_53_48)" d="M362 541c125.4-24.4 162.8-27.7 165.2-3.1v47.8c-65.6 3.6-101.9 3.8-165.1 0V541Z"/>
+        </g>
+        <g id="Rectangle 71" filter="url(#filter2_f_53_48)">
+          <path fill="#fff" fill-opacity=".6" d="M374 596h42v197.5c-7.3 5.3-18.8 4-42 0V596Z"/>
+        </g>
+        <g id="Rectangle 85" filter="url(#filter3_i_53_48)">
+          <rect width="33" height="124" x="426" y="663" fill="#fff" fill-opacity=".2" rx="16.5"/>
+        </g>
+        <g id="Rectangle 87" filter="url(#filter4_i_53_48)">
+          <rect width="33" height="124" x="376" y="663" fill="#fff" fill-opacity=".2" rx="16.5"/>
+        </g>
+        <g id="Rectangle 86" filter="url(#filter5_i_53_48)">
+          <rect width="33" height="124" x="476" y="663" fill="#fff" fill-opacity=".2" rx="16.5"/>
+        </g>
+      </g>
+      <g id="switch">
+        <path id="Rectangle 75" fill="#000" d="M415.2 29.4a5 5 0 0 1 2.6-4.7c19.9-10 29.5-8.3 42.8 0 1.5.9 2.3 2.6 2.2 4.4L455 178a5 5 0 0 1-5 4.8h-22.1a5 5 0 0 1-5-4.8l-7.6-148.7Z"/>
+        <g id="Rectangle 77" filter="url(#filter6_f_53_48)">
+          <path fill="#fff" fill-opacity=".5" d="M431 36.9h9v128h-9z"/>
+        </g>
+        <g id="Rectangle 80" filter="url(#filter7_f_53_48)">
+          <path fill="#fff" d="M441.4 25.9h19v6h-19z" transform="rotate(29 441.4 25.9)"/>
+        </g>
+      </g>
+      <circle id="Ellipse 25" cx="439" cy="195.9" r="23" fill="#696969"/>
+      <g id="Rectangle 78" filter="url(#filter8_f_53_48)">
+        <path fill="#fff" d="M434 222h5v55h-5z"/>
+      </g>
+      <g id="Rectangle 79" filter="url(#filter9_f_53_48)">
+        <path fill="#fff" d="M443.7 177.9h15v6h-15z" transform="rotate(38.4 443.7 177.9)"/>
+      </g>
+    </g>
+    <g id="bell">
+      <path id="bellBtn" fill="#D6D6D6" d="M54 812.7a1 1 0 0 1 1-.7h27c.5 0 .9.3 1 .7l1.7 6a1 1 0 0 1-1 1.3H72v10.5h-7V820H53.3a1 1 0 0 1-1-1.3l1.7-6Z"/>
+      <path id="Ellipse 26" fill="#C4C4C4" d="M123 879H15c0-27 24.2-49 54-49s54 22 54 49Z"/>
+      <path id="Rectangle 88" fill="#A2A2A2" d="M12.5 879.7a1 1 0 0 1 1-.7h111c.5 0 .9.3 1 .7l1.1 4a1 1 0 0 1-1 1.3H12.4a1 1 0 0 1-1-1.3l1.2-4Z"/>
+      <g id="Rectangle 79_2" filter="url(#filter10_f_53_48)">
+        <rect width="13.7" height="9.8" fill="#fff" rx="4.9" transform="matrix(.75362 -.65731 .54142 .84075 37.6 852)"/>
+      </g>
+      <path id="Rectangle 90" fill="#7C7C7C" d="M47 885h44v7H47z"/>
+      <path id="Rectangle 91" fill="#A1A1A1" d="M10 892h118l2 1.3v4.7H8v-4.7l2-1.3Z"/>
+      <g id="bellEffect" fill="#E1FF2C">
+        <path id="Rectangle 92" d="M64 762h9v46h-9z"/>
+        <path id="Rectangle 94" d="M129 779h9v46h-9z" transform="rotate(30 129 779)"/>
+        <path id="Rectangle 93" d="m0 783.5 7.8-4.5 23 39.8-7.8 4.5-23-39.8Z"/>
+      </g>
+    </g>
+  </g>
+  <defs>
+    <filter id="filter0_f_53_48" width="86" height="780" x="333" y="10.9" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur result="effect1_foregroundBlur_53_48" stdDeviation="11"/>
+    </filter>
+    <filter id="filter1_f_53_48" width="16" height="269.1" x="428" y="275.9" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur result="effect1_foregroundBlur_53_48" stdDeviation="3"/>
+    </filter>
+    <filter id="filter2_f_53_48" width="86" height="245" x="352" y="574" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur result="effect1_foregroundBlur_53_48" stdDeviation="11"/>
+    </filter>
+    <filter id="filter3_i_53_48" width="33" height="128" x="426" y="663" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset dy="4"/>
+      <feGaussianBlur stdDeviation="2"/>
+      <feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+      <feBlend in2="shape" result="effect1_innerShadow_53_48"/>
+    </filter>
+    <filter id="filter4_i_53_48" width="33" height="128" x="376" y="663" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset dy="4"/>
+      <feGaussianBlur stdDeviation="2"/>
+      <feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+      <feBlend in2="shape" result="effect1_innerShadow_53_48"/>
+    </filter>
+    <filter id="filter5_i_53_48" width="33" height="128" x="476" y="663" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset dy="4"/>
+      <feGaussianBlur stdDeviation="2"/>
+      <feComposite in2="hardAlpha" k2="-1" k3="1" operator="arithmetic"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+      <feBlend in2="shape" result="effect1_innerShadow_53_48"/>
+    </filter>
+    <filter id="filter6_f_53_48" width="53" height="172" x="409" y="14.9" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur result="effect1_foregroundBlur_53_48" stdDeviation="11"/>
+    </filter>
+    <filter id="filter7_f_53_48" width="31.5" height="26.4" x="432.5" y="19.9" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur result="effect1_foregroundBlur_53_48" stdDeviation="3"/>
+    </filter>
+    <filter id="filter8_f_53_48" width="21" height="71" x="426" y="214" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur result="effect1_foregroundBlur_53_48" stdDeviation="4"/>
+    </filter>
+    <filter id="filter9_f_53_48" width="27.5" height="26" x="434" y="171.9" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur result="effect1_foregroundBlur_53_48" stdDeviation="3"/>
+    </filter>
+    <filter id="filter10_f_53_48" width="24" height="25" x="33.4" y="839.1" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur result="effect1_foregroundBlur_53_48" stdDeviation="3"/>
+    </filter>
+    <linearGradient id="paint0_linear_53_48" x1="276.5" x2="610.5" y1="805.4" y2="897.9" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BA812B"/>
+      <stop offset="1" stop-color="#925700"/>
+    </linearGradient>
+    <linearGradient id="paint1_linear_53_48" x1="444.6" x2="444.6" y1="657.3" y2="812" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFCD1B"/>
+      <stop offset="1" stop-color="#9A7411"/>
+    </linearGradient>
+    <linearGradient id="paint2_linear_53_48" x1="444.6" x2="444.6" y1="526.9" y2="588.5" gradientUnits="userSpaceOnUse">
+      <stop offset=".4" stop-color="#F5F5F5"/>
+      <stop offset=".7" stop-color="#E8E8E8"/>
+      <stop offset="1" stop-color="#EA8C00"/>
+    </linearGradient>
+  </defs>
+</svg>
+
   </div>
 </template>
 
 <script>
-// import gsap from 'gsap'
+import { onMounted } from 'vue'
+import gsap from 'gsap'
 
 export default {
   setup () {
-    // gsap.registerPlugin(ScrollToPlugin, ScrollTrigger)
+    onMounted(() => {
+      gsap.from('#filling', {
+        scaleY: 0,
+        opacity: 0,
+        transformOrigin: 'bottom',
+        delay: 2.3,
+        duration: 6,
+        ease: 'power4',
+        repeat: -1,
+        repeatDelay: 4
+      })
+      gsap.set('#filling', {
+        opacity: 0,
+        repeat: -1,
+        repeatDelay: 10
+      })
+      gsap.from('#beerMug', {
+        xPercent: 300,
+        opacity: 0,
+        duration: 4,
+        ease: 'power4',
+        repeat: -1,
+        repeatDelay: 6
+      })
+      gsap.to('#beerMug', {
+        xPercent: -300,
+        opacity: 0,
+        duration: 4,
+        delay: 6,
+        ease: 'power4',
+        repeat: -1,
+        repeatDelay: 6
+      })
 
-    // const panelsSection = document.querySelector('#panels')
-    // const panelsContainer = document.querySelector('#panels-container')
-    // let tween
-    // document.querySelectorAll('.anchor').forEach(anchor => {
-    //   anchor.addEventListener('click', function (e) {
-    //     e.preventDefault()
-    //     const targetElem = document.querySelector(e.target.getAttribute('href'))
-    //     let y = targetElem
-    //     if (targetElem && panelsContainer.isSameNode(targetElem.parentElement)) {
-    //       const totalScroll = tween.scrollTrigger.end - tween.scrollTrigger.start
-    //       const totalMovement = (panels.length - 1) * targetElem.offsetWidth
-    //       y = Math.round(tween.scrollTrigger.start + (targetElem.offsetLeft / totalMovement) * totalScroll)
-    //     }
-    //     gsap.to(window, {
-    //       scrollTo: {
-    //         y: y,
-    //         autoKill: false
-    //       },
-    //       duration: 1
-    //     })
-    //   })
-    // })
+      // 맥주 따르기
+      gsap.to('#switch', {
+        scaleY: 0.5,
+        transformOrigin: 'bottom',
+        delay: 1.8,
+        duration: 0.5,
+        ease: 'none',
+        repeat: -1,
+        repeatDelay: 9.5
+      })
+      gsap.to('#switch', {
+        scaleY: 1,
+        transformOrigin: 'bottom',
+        delay: 5,
+        duration: 0.5,
+        ease: 'none',
+        repeat: -1,
+        repeatDelay: 9.5
+      })
+      gsap.from('#pour', {
+        opacity: 1,
+        scaleY: 0.7,
+        transformOrigin: 'bottom',
+        yPercent: -100,
+        delay: 2,
+        duration: 0.5,
+        ease: 'none',
+        repeat: -1,
+        repeatDelay: 9.5
+      })
+      gsap.to('#pour', {
+        opacity: 1,
+        yPercent: 100,
+        delay: 5,
+        duration: 0.5,
+        repeat: -1,
+        repeatDelay: 9.5
+      })
+      gsap.set('#pour', {
+        opacity: 0,
+        delay: 6,
+        repeat: -1,
+        repeatDelay: 10
+      })
 
-    // /* Panels */
-    // const panels = gsap.utils.toArray('#panels-container .panel')
-    // tween = gsap.to(panels, {
-    //   xPercent: -100 * (panels.length - 1),
-    //   ease: 'none',
-    //   scrollTrigger: {
-    //     trigger: '#panels-container',
-    //     pin: true,
-    //     start: 'top top',
-    //     scrub: 1,
-    //     snap: {
-    //       snapTo: 1 / (panels.length - 1),
-    //       inertia: false,
-    //       duration: { min: 0.1, max: 0.1 }
-    //     },
-    //     end: () => '+=' + (panelsContainer.offsetWidth - innerWidth)
-    //   }
-    // })
+      // 벨 애니메이션
+      gsap.from('#bellBtn', {
+        yPercent: 50,
+        delay: 6,
+        duration: 1,
+        ease: 'none',
+        repeat: -1,
+        repeatDelay: 9
+      })
+      gsap.to('#bellEffect', {
+        yPercent: -50,
+        delay: 6,
+        duration: 1,
+        opacity: 0,
+        ease: 'none',
+        repeat: -1,
+        repeatDelay: 9
+      })
+    })
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.sideBarWrap {
-  // position: absolute;
-  // top: 0;
-  // left: 0;
-  .arrow {
-    position: fixed;
-    transform: translate(-40%, -50%);
-    top: 50%;
-    z-index: 5;
-    width: 45px;
-    height: 45px;
-    cursor: pointer;
-  }
-  .sideBar {
-    position: fixed;
-    z-index: 6;
-    width: 20%;
-    height: 100%;
-    background: linear-gradient(0deg, rgba(242,177,2,1) 65%, rgba(255,245,22,1) 100%);
-    text-align: center;
-    ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      height: 100%;
-      .sideSymbol {
-        height: 20%;
-      }
-      li {
-        padding: 10px 0 10px 0;
-        color: #2525ff;
-        word-break: keep-all;
-        text-transform: uppercase;
-        cursor: pointer;
-        font-size: 1.5rem;
-        font-weight: 600;
-        &:hover,
-        &:focus {
-          color: rgb(63, 141, 194);
-          text-decoration: underline;
-        }
-      }
-    }
-  }
+.dd {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #43506A;
 }
-.sideBarFade-enter-from {
-  transform: translate(-100%);
-  opacity: 0;
-}
-.sideBarFade-leave-to {
-  transform: translate(-100%);
-  opacity: 0;
-}
-.sideBarFade-enter-active,
-.sideBarFade-leave-active {
-  transition: .5s ease
-}
-@media screen and (max-width: 1200px) {
-  .sideBarWrap {
-    .sideBar {
-      ul {
-        li {
-          font-size: 1.2rem;
-        }
-      }
-    }
-  }
-}
-@media screen and (max-width: 800px) {
-  .sideBarWrap {
-    .sideBar {
-      width: 40%;
-      ul {
-        li {
-          font-size: 1rem;
-        }
-      }
-    }
-  }
-}
-@media screen and (max-width: 480px) {
-  .sideBarWrap {
-    .sideBar {
-      width: 60%;
-    }
-  }
+svg {
+  position: relative;
+  transform: translate(-53%, 20%);
+  left: 50%;
+  width: 100%;
+  height: 70%;
+  // 20%
 }
 </style>
