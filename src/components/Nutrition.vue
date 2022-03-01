@@ -193,7 +193,7 @@ export default {
   }
 }
 @media screen and (max-width: 800px) {
-  .dd {
+  .wrapper {
     .info {
       margin: 6% 0 3% 0;
       font-size: 1.3rem;

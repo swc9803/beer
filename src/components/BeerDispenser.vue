@@ -154,6 +154,10 @@
       </linearGradient>
     </defs>
   </svg>
+  <p>Sung beer는 2022년부터 생산되어 전 세계적으로 사랑받는 제품입니다.
+
+  </p>
+  <p class="notice">위 제품은 존재하지 않으며 테스트용으로 만들었습니다.</p>
 </template>
 
 <script>
@@ -285,6 +289,20 @@ export default {
   transform: translate(-53%, 20%);
   left: 50%;
   width: 100%;
-  height: 30%;
+  height: 50%;
+}
+p {
+  margin: 2%;
+  word-break: keep-all;
+  position: relative;
+  top: 20%;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+}
+.notice {
+  color: rgb(219, 219, 219);
+  font-size: 0.8rem;
 }
 </style>
