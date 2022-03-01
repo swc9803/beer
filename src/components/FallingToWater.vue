@@ -380,6 +380,7 @@ $mainFont: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu
 @media screen and (max-width: 574px) {
   .waterWrap {
     .fallingText {
+      font-size: 3rem;
       top: 20%;
     }
     .btnWrap {
