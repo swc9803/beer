@@ -48,10 +48,10 @@
               </filter>
             </defs>
           </svg>
-          <li href=".section1" class="anchor">home</li>
-          <li href=".section2" class="anchor">sung beer 즐기기</li>
-          <li href=".section3" class="anchor">브랜드 스토리</li>
-          <li href=".section4" class="anchor">영양 정보</li>
+          <li @click="closeSide" href=".section1" class="anchor">home</li>
+          <li @click="closeSide" href=".section2" class="anchor">sung beer 즐기기</li>
+          <li @click="closeSide" href=".section3" class="anchor">브랜드 스토리</li>
+          <li @click="closeSide" href=".section4" class="anchor">영양 정보</li>
         </ul>
       </div>
     </transition>
@@ -133,6 +133,7 @@ export default {
     }
     const showSideBar = () => {
       sideBarData.value = true
+      arrowScaleAni.reverse()
     }
 
     const sidebarData = ref(false)
@@ -172,6 +173,17 @@ export default {
         }, '<')
       }
     }
+    const closeSide = () => {
+      sidebarData.value = false
+      gsap.to(arrow.value, {
+        rotate: 0,
+        transformOrigin: 'center',
+        duration: 0.5
+      })
+      gsap.to(arrowWrap.value, {
+        left: 0
+      }, '<')
+    }
     const arrowBigger = () => {
       arrowScaleAni.play()
     }
@@ -200,40 +212,60 @@ export default {
         ease: 'none',
         duration: 0.2
       })
-      document.querySelectorAll('.anchor').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault()
-          const targetElem = document.querySelector(e.target.getAttribute('href'))
-          let y = targetElem
-          if (targetElem && sectionWrap.value.isSameNode(targetElem.parentElement)) {
-            const totalScroll = scrollAni.scrollTrigger.end - scrollAni.scrollTrigger.start
-            const totalMovement = (sections.length - 1) * targetElem.offsetWidth
-            y = Math.round(scrollAni.scrollTrigger.start + (targetElem.offsetLeft / totalMovement) * totalScroll)
-          }
-          gsap.to(window, {
-            scrollTo: {
-              y: y,
-              autoKill: false
-            },
-            duration: 1
+      ScrollTrigger.matchMedia({
+        '(min-width: 480px)': function () {
+          document.querySelectorAll('.anchor').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+              e.preventDefault()
+              const targetElem = document.querySelector(e.target.getAttribute('href'))
+              let y = targetElem
+              if (targetElem && sectionWrap.value.isSameNode(targetElem.parentElement)) {
+                const totalScroll = scrollAni.scrollTrigger.end - scrollAni.scrollTrigger.start
+                const totalMovement = (sections.length - 1) * targetElem.offsetWidth
+                y = Math.round(scrollAni.scrollTrigger.start + (targetElem.offsetLeft / totalMovement) * totalScroll)
+              }
+              gsap.to(window, {
+                scrollTo: {
+                  y: y,
+                  autoKill: false
+                },
+                duration: 1
+              })
+            })
           })
-        })
+          const sections = gsap.utils.toArray([section1.value, section2.value, section3.value, section4.value])
+          const scrollAni = gsap.to(sections, {
+            xPercent: -100 * (sections.length - 1),
+            ease: 'none',
+            scrollTrigger: {
+              trigger: sectionWrap.value,
+              pin: true,
+              start: 'top top',
+              scrub: 1,
+              snap: {
+                snapTo: 1 / (sections.length - 1),
+                inertia: false,
+                duration: { min: 0.1, max: 0.1 }
+              },
+              end: () => '+=' + (sectionWrap.value.offsetWidth - innerWidth)
+            }
+          })
+        }
       })
-      const sections = gsap.utils.toArray([section1.value, section2.value, section3.value, section4.value])
-      const scrollAni = gsap.to(sections, {
-        xPercent: -100 * (sections.length - 1),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sectionWrap.value,
-          pin: true,
-          start: 'top top',
-          scrub: 1,
-          snap: {
-            snapTo: 1 / (sections.length - 1),
-            inertia: false,
-            duration: { min: 0.1, max: 0.1 }
-          },
-          end: () => '+=' + (sectionWrap.value.offsetWidth - innerWidth)
+      ScrollTrigger.matchMedia({
+        '(max-width: 479px)': function () {
+          document.querySelectorAll('.anchor').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+              e.preventDefault()
+              gsap.to(window, {
+                scrollTo: {
+                  y: document.querySelector(e.target.getAttribute('href')),
+                  autoKill: false
+                },
+                duration: 1
+              })
+            })
+          })
         }
       })
     })
@@ -259,6 +291,7 @@ export default {
       arrowWrap,
       arrow,
       openSidaBar,
+      closeSide,
       arrowBigger,
       arrowSmaller,
       container,
@@ -292,6 +325,7 @@ export default {
   }
   .section2 {
     background: #dab37980;
+    overflow: hidden;
   }
   .section3 {
     background: #43506A;
@@ -299,7 +333,6 @@ export default {
 }
 
 .sideBarWrap {
-  position: fixed;
   .arrow {
     position: fixed;
     transform: translate(-40%, -50%);
@@ -373,6 +406,18 @@ export default {
           font-size: 1rem;
         }
       }
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  .sectionWrap {
+    width: 100%;
+    height: 400%;
+    display: block;
+  }
+  .sideBarWrap {
+    .arrow {
+      width: 40px;
     }
   }
 }

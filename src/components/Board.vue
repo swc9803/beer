@@ -742,14 +742,14 @@ export default {
     }
   }
 }
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 480px) {
   .boardWrap {
-    width: 200%;
+    width: 180%;
     p {
       font-size: 2rem;
     }
     .textWrap {
-      top: 100%;
+      top: 95%;
     }
   }
 }

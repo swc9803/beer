@@ -186,6 +186,7 @@ export default {
     }
   }
   .warning {
+    padding: 0 3% 0 3%;
     margin: 3% 0 3% 0;
     font-size: 0.8rem;
     word-break: keep-all;
