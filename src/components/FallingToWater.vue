@@ -216,7 +216,8 @@ $mainFont: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu
   text-align: center;
   overflow: hidden;
   .fallingText {
-    position: relative;
+    position: absolute;
+    transform: translate(-56%);
     top: 30%;
     display: inline-block;
     font-family: $mainFont;
@@ -228,10 +229,11 @@ $mainFont: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu
     word-break: keep-all;
   }
   .btnWrap {
-    position: relative;
+    position: absolute;
+    transform: translate(-50%);
+    left: 50%;
+    top: 70%;
     display: flex;
-    justify-content: center;
-    top: 50%;
     z-index: 3;
     div {
       cursor: pointer;
@@ -272,7 +274,7 @@ $mainFont: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu
   }
   .movingText {
     position: relative;
-    top: 20%;
+    top: 40%;
     font-family: $mainFont;
     font-size: 5rem;
     font-weight: 800;
@@ -384,13 +386,13 @@ $mainFont: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu
       top: 20%;
     }
     .btnWrap {
-      top: 35%;
+      top: 60%;
       div {
         padding: 15px 5px 15px 5px;
       }
     }
     .movingText {
-      top: 0;
+      top: 35%;
       font-size: 2rem;
     }
   }

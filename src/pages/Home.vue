@@ -335,11 +335,10 @@ export default {
 .sideBarWrap {
   .arrow {
     position: fixed;
-    transform: translate(-40%, -50%);
+    transform: translate(-43%, -50%);
     top: 50%;
     z-index: 5;
-    width: 45px;
-    height: 45px;
+    width: 80px;
     cursor: pointer;
   }
   .sideBar {
@@ -417,7 +416,8 @@ export default {
   }
   .sideBarWrap {
     .arrow {
-      width: 40px;
+      transform: translate(-40%, -50%);
+      width: 45px;
     }
   }
 }

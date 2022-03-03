@@ -551,7 +551,7 @@
             </filter>
           </defs>
         </svg>
-        <p>클릭해서 <span ref="textColor">맥주</span> 한 잔하기</p>
+        <p ref="clickMe">🔼클릭해서 <span ref="textColor">맥주</span> 한 잔하기</p>
       </div>
     </div>
   </div>
@@ -571,6 +571,7 @@ export default {
     const tvLight = ref()
     const textColor = ref()
     const plus = ref()
+    const clickMe = ref()
     const boardAni = () => {
       gsap.to(board.value, {
         rotate: '+=120',
@@ -648,6 +649,13 @@ export default {
         yoyo: true,
         repeat: -1
       })
+      gsap.fromTo(clickMe.value, { yPercent: -20 }, {
+        yPercent: 70,
+        duration: 2,
+        ease: 'none',
+        yoyo: true,
+        repeat: -1
+      })
     })
 
     return {
@@ -660,6 +668,7 @@ export default {
       textColor,
       plus,
       count,
+      clickMe,
       countPlus,
       boardAni,
       rotateBoard
